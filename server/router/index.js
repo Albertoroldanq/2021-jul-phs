@@ -8,13 +8,33 @@ const mongoSettings = {
 }
 
 function router(app) {
-    app.get('/', (request, response) => {
+    app.get('/doctors', (request, response) => {
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
-            const db = client.db('todo-app')
-            const tasksCollection = db.collection('tasks')
-            const completedTasks = await tasksCollection.find({completed: "true"}).toArray()
+            const db = client.db('phs')
+            const doctorsCollection = db.collection('doctors')
+            const doctors = await doctorsCollection.find().toArray()
 
-            response.json('home', {completedTasks, uncompletedTasks})
+            response.json(doctors)
+        })
+    })
+
+    app.get('/patients', (request, response) => {
+        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
+            const db = client.db('phs')
+            const patientsCollection = db.collection('patients')
+            const patients = await patientsCollection.find().toArray()
+
+            response.json(patients)
+        })
+    })
+
+    app.get('/appointments', (request, response) => {
+        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
+            const db = client.db('phs')
+            const appointmentsCollection = db.collection('appointments')
+            const appointments = await appointmentsCollection.find().toArray()
+
+            response.json(appointments)
         })
     })
 }
