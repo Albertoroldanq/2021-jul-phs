@@ -1,5 +1,10 @@
 const MongoClient = require('mongodb').MongoClient
 const ObjectId = require('mongodb').ObjectId
+const cors = require('cors')
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200,
+}
 
 const mongoUrl = 'mongodb://root:password@localhost:27017'
 const mongoSettings = {
@@ -7,8 +12,9 @@ const mongoSettings = {
     useUnifiedTopology: true
 }
 
+
 function router(app) {
-    app.get('/doctors', (request, response) => {
+    app.get('/doctors', cors(corsOptions), (request, response) => {
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
             const db = client.db('phs')
             const doctorsCollection = db.collection('doctors')
