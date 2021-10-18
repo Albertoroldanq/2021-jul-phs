@@ -13,10 +13,8 @@ function router(app) {
             const db = client.db('todo-app')
             const tasksCollection = db.collection('tasks')
             const completedTasks = await tasksCollection.find({completed: "true"}).toArray()
-            const uncompletedTasks = await tasksCollection.find({completed: "false"}).toArray()
-            completedTasks.reverse()
-            uncompletedTasks.reverse()
-            response.render('home', {completedTasks, uncompletedTasks})
+
+            response.json('home', {completedTasks, uncompletedTasks})
         })
     })
 }
