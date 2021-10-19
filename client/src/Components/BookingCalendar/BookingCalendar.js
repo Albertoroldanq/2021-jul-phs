@@ -22,7 +22,6 @@ const BookingCalendar = (props) => {
 
                 {props.currentDoctor.timeSlots.map((slot) => {
                     return (
-
                         <p>{slot + " - " + parseInt(slot + 1)}</p>
                     )
                 })}
