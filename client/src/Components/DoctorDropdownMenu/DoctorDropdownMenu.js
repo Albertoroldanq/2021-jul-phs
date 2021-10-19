@@ -1,23 +1,21 @@
 import React, {useEffect, useState} from "react";
 
-const DoctorDropdownMenu = () => {
-    const [allDoctors, setAllDoctors] = useState([]);
-    const doctors = async (e) => {
-        const response = await fetch('http://localhost:5000/doctors')
-        let doctorsResponse = await response.json();
-        setAllDoctors(doctorsResponse)
+const DoctorDropdownMenu = (props) => {
+    // // const [allDoctors, setAllDoctors] =
+    //     useState([props.allDoctors]);
+    // const [currentDoctor, setCurrentDoctor] = useState([props.allDoctors]);
+
+    const handleChange = (index) => {
+        props.setCurrentDoctor(props.allDoctors[index])
     }
 
-    useEffect(() => {
-        doctors()
-    }, [])
 
     return (
         <div>
-            <select name={"doctors"} id={"doctors"}>
-                {allDoctors.map((doctor) => {
+            <select onChange={e => handleChange(e.target.value)} name={"doctors"} id={"doctors"}>
+                {props.allDoctors.map((doctor, index) => {
                     return (
-                        <option value="" data-doctorId={doctor._id}>Dr. {doctor.firstName + ' ' + doctor.lastName}</option>
+                        <option value={index} data-doctorId={doctor._id}>Dr. {doctor.firstName + ' ' + doctor.lastName}</option>
                     )
                 })}
             </select>

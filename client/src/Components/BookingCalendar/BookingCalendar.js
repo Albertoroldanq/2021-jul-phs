@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 
-const BookingCalendar = () => {
+const BookingCalendar = (props) => {
     const [value, onChange] = useState(new Date());
-    console.log(value)
+    // const [allAppointments, setAllAppointments] =
+
+
+
 
     return (
         <div>
@@ -11,6 +14,14 @@ const BookingCalendar = () => {
                 onChange={onChange}
                 value={value}
             />
+            <div>
+                {props.allAppointments.map((appointment) => {
+                    return (
+                        <p>{appointment.date}</p>
+                    )
+                })}
+            </div>
+            <p>{props.currentDoctor.firstName}</p>
         </div>
     );
 }
