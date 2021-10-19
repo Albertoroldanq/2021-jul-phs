@@ -11,7 +11,6 @@ const DoctorDropdownMenu = (props) => {
         props.setCurrentDoctor(props.allDoctors[index])
     }
 
-
     return (
         <div>
             <select onChange={e => handleChange(e.target.value)} name={"doctors"} id={"doctors"}>

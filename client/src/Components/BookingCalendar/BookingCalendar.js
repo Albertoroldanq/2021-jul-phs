@@ -1,36 +1,34 @@
 import React, {useState} from 'react';
 import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const BookingCalendar = (props) => {
-    const [value, onChange] = useState(new Date());
-
-    if(props.currentDoctor){
-        return (
-
-            <div>
-                <Calendar
-                    onChange={onChange}
-                    value={value}
-                />
-                {props.currentDoctor.timeSlots.map(timeSlot => {
-                    return <p>{timeSlot}</p>
-                    console.log(timeSlot)
-                })}
-            </div>
-        );
-    } else {
-        return (
-
-            <div>
-                <Calendar
-                    onChange={onChange}
-                    value={value}
-                />
-
-            </div>
-
-        );
+    const formatDate = (value) => {
+        // const arr = value.split(' ')
+let arr = value.split(" ")
+        console.log(arr)
     }
+
+
+    const [value, onChange] = useState(new Date())
+    return (
+        props.currentDoctor.timeSlots ?
+            <div>
+                <Calendar
+                    onChange={onChange}
+                    value={value}
+                    onClickDay={formatDate(value)}
+                />
+
+                {props.currentDoctor.timeSlots.map((slot) => {
+                    return (
+                        <p>{slot}</p>
+                    )
+                })}
+            </div> :
+            <div>
+            </div>
+    );
     //
     // return (
     //
