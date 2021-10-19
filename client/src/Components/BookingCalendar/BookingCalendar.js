@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Calendar from 'react-calendar';
 
 const BookingCalendar = (props) => {
     const [value, onChange] = useState(new Date());
-    // const [allAppointments, setAllAppointments] =
 
+    if(props.currentDoctor){
+        return (
 
-
-
-    return (
-        <div>
-            <Calendar
-                onChange={onChange}
-                value={value}
-            />
             <div>
-                {props.allAppointments.map((appointment) => {
-                    return (
-                        <p>{appointment.date}</p>
-                    )
+                <Calendar
+                    onChange={onChange}
+                    value={value}
+                />
+                {props.currentDoctor.timeSlots.map(timeSlot => {
+                    return <p>{timeSlot}</p>
+                    console.log(timeSlot)
                 })}
             </div>
-            <p>{props.currentDoctor.firstName}</p>
-        </div>
-    );
+        );
+    } else {
+        return (
+
+            <div>
+                <Calendar
+                    onChange={onChange}
+                    value={value}
+                />
+
+            </div>
+
+        );
+    }
+    //
+    // return (
+    //
+    //     <div>
+    //         <Calendar
+    //             onChange={onChange}
+    //             value={value}
+    //         />
+    //
+    //     </div>
+    // );
 }
 
 export default BookingCalendar

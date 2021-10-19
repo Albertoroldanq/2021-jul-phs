@@ -4,13 +4,17 @@ import DoctorDropdownMenu from "../DoctorDropdownMenu/DoctorDropdownMenu";
 
 
 const AppointmentBookingPage = () => {
+    const [currentDoctor, setCurrentDoctor] = useState([]);
+
     const [allDoctors, setAllDoctors] = useState([]);
     const doctors = async (e) => {
         const response = await fetch('http://localhost:5000/doctors')
         let doctorsResponse = await response.json();
         setAllDoctors(doctorsResponse)
+        setCurrentDoctor(doctorsResponse[0])
     }
-    const [currentDoctor, setCurrentDoctor] = useState([]);
+
+
 
     const [allAppointments, setAllAppointments] = useState([]);
     const appointments = async (e) => {
