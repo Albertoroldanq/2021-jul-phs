@@ -4,9 +4,9 @@ import 'react-calendar/dist/Calendar.css';
 
 const BookingCalendar = (props) => {
     const formatDate = (value) => {
-        // const arr = value.split(' ')
-let arr = value.split(" ")
-        console.log(arr)
+        let dateForm = value.toDateString()
+        let arr = dateForm.split(" ")
+        return arr
     }
 
 
@@ -22,7 +22,8 @@ let arr = value.split(" ")
 
                 {props.currentDoctor.timeSlots.map((slot) => {
                     return (
-                        <p>{slot}</p>
+
+                        <p>{slot + " - " + parseInt(slot + 1)}</p>
                     )
                 })}
             </div> :
