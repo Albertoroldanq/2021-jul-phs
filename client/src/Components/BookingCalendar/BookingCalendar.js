@@ -3,43 +3,33 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 const BookingCalendar = (props) => {
-    const formatDate = (value) => {
-        let dateForm = value.toDateString()
-        let arr = dateForm.split(" ")
-        return arr
+
+    const [value, onChange] = useState(new Date())
+    const [availableAppointments, setAvailableAppointments] = useState('')
+
+    const getAppointments = async (date) => {
+        const response = await fetch(`http://localhost:5000/appointments/${props.currentDoctor._id}/${date}`)
+        let appointmentsAvailableResponse = await response.json();
+        setAvailableAppointments(appointmentsAvailableResponse)
     }
 
 
-    const [value, onChange] = useState(new Date())
     return (
-        props.currentDoctor.timeSlots ?
-            <div>
-                <Calendar
-                    onChange={onChange}
-                    value={value}
-                    onClickDay={formatDate(value)}
-                />
+        <div>
+            <Calendar
+                onChange={onChange}
+                value={value}
+                onClickDay={getAppointments(value.toDateString())}
+            />
 
-                {props.currentDoctor.timeSlots.map((slot) => {
-                    return (
-                        <p>{slot + " - " + parseInt(slot + 1)}</p>
-                    )
-                })}
-            </div> :
-            <div>
-            </div>
+
+            {availableAppointments.time.map((slot) => {
+                return (
+                    <p>{slot + " - " + parseInt(slot + 1)}</p>
+                )
+            })}
+        </div>
     );
-    //
-    // return (
-    //
-    //     <div>
-    //         <Calendar
-    //             onChange={onChange}
-    //             value={value}
-    //         />
-    //
-    //     </div>
-    // );
 }
 
 export default BookingCalendar

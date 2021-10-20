@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import BookingCalendar from "../BookingCalendar/BookingCalendar";
 import DoctorDropdownMenu from "../DoctorDropdownMenu/DoctorDropdownMenu";
 
-
 const AppointmentBookingPage = () => {
     const [currentDoctor, setCurrentDoctor] = useState([]);
 
@@ -13,8 +12,6 @@ const AppointmentBookingPage = () => {
         setAllDoctors(doctorsResponse)
         setCurrentDoctor(doctorsResponse[0])
     }
-
-
 
     const [allAppointments, setAllAppointments] = useState([]);
     const appointments = async (e) => {
@@ -29,8 +26,9 @@ const AppointmentBookingPage = () => {
 
     return (
         <div>
-            <DoctorDropdownMenu allDoctors={allDoctors} setCurrentDoctor={setCurrentDoctor} currentDoctor={currentDoctor}/>
-            <BookingCalendar allAppointments={allAppointments} currentDoctor={currentDoctor} />
+                <DoctorDropdownMenu allDoctors={allDoctors} setCurrentDoctor={setCurrentDoctor}
+                                    currentDoctor={currentDoctor}/>
+                <BookingCalendar allAppointments={allAppointments} currentDoctor={currentDoctor}/>
         </div>
     );
 }
