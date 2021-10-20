@@ -44,13 +44,13 @@ function router(app) {
         })
     })
 
-    app.get('/appointments/:doctorId/:day', (request, response) => {
+    app.get('/appointments/:doctorId/', (request, response) => {
         const doctorId = request.params.doctorId
         const day = request.params.day
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
             const db = client.db('phs')
             const appointmentsCollection = db.collection('appointments')
-            const appointmentsBookedDoctorDate = await appointmentsCollection.find({doctorId: doctorId, date: day}).toArray()
+            const appointmentsBookedDoctorDate = await appointmentsCollection.find({doctorId: doctorId}).toArray()
 
             response.json(appointmentsBookedDoctorDate)
         })

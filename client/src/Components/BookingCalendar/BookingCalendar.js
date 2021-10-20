@@ -21,13 +21,12 @@ const BookingCalendar = (props) => {
                 value={value}
                 onClickDay={getAppointments(value.toDateString())}
             />
-
-
-            {availableAppointments.time.map((slot) => {
-                return (
-                    <p>{slot + " - " + parseInt(slot + 1)}</p>
-                )
-            })}
+            {props.currentDoctor.timeSlots ?
+                availableAppointments.time.map((slot) => {
+                    return (
+                        <p>{slot + " - " + parseInt(slot + 1)}</p>
+                    )
+                })}
         </div>
     );
 }
