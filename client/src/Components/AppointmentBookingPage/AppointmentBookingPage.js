@@ -13,22 +13,16 @@ const AppointmentBookingPage = () => {
         setCurrentDoctor(doctorsResponse[0])
     }
 
-    const [allAppointments, setAllAppointments] = useState([]);
-    const appointments = async (e) => {
-        const response = await fetch('http://localhost:5000/appointments')
-        let appointmentsResponse = await response.json();
-        setAllAppointments(appointmentsResponse)
-    }
+
     useEffect(() => {
         doctors()
-        appointments()
     }, [])
 
     return (
         <div>
                 <DoctorDropdownMenu allDoctors={allDoctors} setCurrentDoctor={setCurrentDoctor}
                                     currentDoctor={currentDoctor}/>
-                <BookingCalendar allAppointments={allAppointments} currentDoctor={currentDoctor}/>
+                <BookingCalendar currentDoctor={currentDoctor}/>
         </div>
     );
 }
