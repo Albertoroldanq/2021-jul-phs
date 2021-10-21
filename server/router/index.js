@@ -44,24 +44,27 @@ function router(app) {
         })
     })
 
+
     app.get('/doctors/:id/:date', (request, response) => {
-        let id = ObjectId(request.params.id)
-        let day = request.params.date
-        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
-            const db = client.db('phs')
-            const doctors = db.collection('doctors')
-            const doctor = await doctors.find({_id: id}).toArray()
-            let doctorBookedTimes = []
-            if (doctor[0].appointments[day]) {
-                doctor[0].appointments[day].forEach(time => {
-                    doctorBookedTimes.push(time.time)
+            let id = ObjectId(request.params.id)
+            let day = request.params.date
+            MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
+                    const db = client.db('phs')
+                    const doctors = db.collection('doctors')
+                    const doctor = await doctors.find({_id: id}).toArray()
+                    let doctorBookedTimes = []
+                    if (doctor[0].appointments[day]) {
+                        doctor[0].appointments[day].forEach(time => {
+                            doctorBookedTimes.push(time.time)
 
-                })
-            }
-            response.json(doctorBookedTimes)
+                        })
+                    }
+                    response.json(doctorBookedTimes)
 
-        })
-    })
+                }
+            )
+        }
+    )
 }
 
 module.exports = router

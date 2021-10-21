@@ -6,6 +6,7 @@ import './BookingCalendar.css'
 const BookingCalendar = (props) => {
 
     const [value, onChange] = useState(new Date())
+
     const day = value.getDate().toString()
     const month = (value.getMonth() + 1).toString()
     const year = value.getFullYear().toString()
@@ -51,8 +52,9 @@ const BookingCalendar = (props) => {
             </div>
 
         </div>
-    );
+);
+
+
 
 }
-
 export default BookingCalendar
