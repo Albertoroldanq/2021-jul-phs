@@ -56,7 +56,7 @@ const BookingCalendar = (props) => {
                 </div> : <div></div>}
 
             <div>
-                <form method="POST" action="">
+                <form method="POST" action="/appointmentBooked">
                     <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
                     <input type="hidden" value={date} name="date"/>
                     <input type="hidden" value={appointmentTime} name="time"/>
