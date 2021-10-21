@@ -112,7 +112,7 @@ const BookingCalendar = (props) => {
                        placeholder="Provide a brief description and symptoms for your appointment"
                        name="description" onChange={e => setAppointmentDescription(e.target.value)}/>
                 <button value="Book an appointment!" onClick={handleSubmit}>Book</button>
-        </div>
+            </div>
         </div>
     )
 }
