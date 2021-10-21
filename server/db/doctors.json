@@ -1,8 +1,71 @@
 [{
   "_id": {
-    "$oid": "616d4abdfdec693a13953e47"
+    "$oid": "616e9f3900b6622a58062802"
   },
-  "firstName": "",
-  "lastName": "",
-  "appointmentsId": []
+  "firstName": "bobby",
+  "lastName": "doctor",
+  "appointments": {
+    "21102021": [
+      {
+        "time": 9
+      }
+    ],
+    "22102021": [
+      {
+        "time": 10
+      }
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "61713267409fb3a515bdb374"
+  },
+  "firstName": "boy",
+  "lastName": "dor",
+  "appointments": {
+    "21-10-2021": [
+      {
+        "time": 10
+      }
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "6171327e409fb3a515bdb375"
+  },
+  "firstName": "Doctor",
+  "lastName": "doctor",
+  "appointments": {
+    "21-10-2021": [
+      {
+        "time": 11
+      }
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "61713287409fb3a515bdb376"
+  },
+  "firstName": "Nurse",
+  "lastName": "doctor",
+  "appointments": {
+    "21-10-2021": [
+      {
+        "time": 11
+      }
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "61713291409fb3a515bdb377"
+  },
+  "firstName": "Janitor",
+  "lastName": "doctor",
+  "appointments": {
+    "21-10-2021": [
+      {
+        "time": 11
+      }
+    ]
+  }
 }]
