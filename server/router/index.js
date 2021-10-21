@@ -12,7 +12,6 @@ const mongoSettings = {
     useUnifiedTopology: true
 }
 
-
 function router(app) {
     app.get('/doctors', cors(corsOptions), (request, response) => {
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
@@ -65,6 +64,32 @@ function router(app) {
             )
         }
     )
+
+    app.post('/appointmentBooked/', (request, response) => {
+        let doctorId = request.body.doctor
+        let date = request.body.date
+        let id = ObjectId(doctorId)
+        let data = {
+            date : [{
+            time: request.body.time,
+            name: request.body.name,
+            email: request.body.email,
+            description: request.body.description
+            }]
+            // date: request.body.date,
+            // time: request.body.time,
+            // name: request.body.name,
+            // email: request.body.email,
+            // description: request.body.description
+        }
+
+        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
+            const db = client.db('phs')
+            const appointmentsCollection = db.collection('appointments')
+            const appointments = await appointmentsCollection.updateOne({_id: id}, {$set: {appointments: {data}}})
+            response.json(appointments)
+        })
+    })
 }
 
 module.exports = router
