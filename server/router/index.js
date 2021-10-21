@@ -74,12 +74,12 @@ function router(app) {
             name: request.body.name,
             email: request.body.email,
             description: request.body.description
-
         }
 
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
             const db = client.db('phs')
             const appointmentsCollection = db.collection('doctors')
+
             const appointments = await appointmentsCollection.updateOne({_id: id}, {$push: {appointments: {date: data}}})
             response.json(appointments)
         })
