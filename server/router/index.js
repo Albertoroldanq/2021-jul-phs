@@ -70,23 +70,17 @@ function router(app) {
         let date = request.body.date
         let id = ObjectId(doctorId)
         let data = {
-            date : [{
             time: request.body.time,
             name: request.body.name,
             email: request.body.email,
             description: request.body.description
-            }]
-            // date: request.body.date,
-            // time: request.body.time,
-            // name: request.body.name,
-            // email: request.body.email,
-            // description: request.body.description
+
         }
 
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
             const db = client.db('phs')
-            const appointmentsCollection = db.collection('appointments')
-            const appointments = await appointmentsCollection.updateOne({_id: id}, {$set: {appointments: {data}}})
+            const appointmentsCollection = db.collection('doctors')
+            const appointments = await appointmentsCollection.updateOne({_id: id}, {$push: {appointments: {date: data}}})
             response.json(appointments)
         })
     })
