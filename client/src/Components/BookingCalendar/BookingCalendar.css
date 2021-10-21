@@ -1,3 +1,4 @@
-.booked {
+.booked, .hidden {
     display: none;
 }
+

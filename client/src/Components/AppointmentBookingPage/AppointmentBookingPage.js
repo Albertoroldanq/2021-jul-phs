@@ -14,7 +14,6 @@ const AppointmentBookingPage = () => {
         setCurrentDoctor(doctorsResponse[0])
     }
 
-
     useEffect(() => {
         doctors()
     }, [])

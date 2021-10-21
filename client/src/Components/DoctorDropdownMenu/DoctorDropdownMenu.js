@@ -11,8 +11,7 @@ const DoctorDropdownMenu = (props) => {
             <select onChange={e => handleChange(e.target.value)} name={"doctors"} id={"doctors"}>
                 {props.allDoctors.map((doctor, index) => {
                     return (
-                        <option value={index}
-                                data-doctorId={doctor._id}>Dr. {doctor.firstName + ' ' + doctor.lastName}</option>
+                        <option value={index}>Dr. {doctor.firstName + ' ' + doctor.lastName}</option>
                     )
                 })}
             </select>
