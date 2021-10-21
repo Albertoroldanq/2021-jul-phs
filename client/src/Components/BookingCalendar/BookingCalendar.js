@@ -25,7 +25,9 @@ const BookingCalendar = (props) => {
     }
     bookedAppointments.forEach(appointment => {
         timeSlots[appointment] = "booked"
+
     })
+
 
     useEffect(() => {
         fetch('http://localhost:5000/doctors/' + props.currentDoctor._id + '/' + date).then(
@@ -34,23 +36,27 @@ const BookingCalendar = (props) => {
             })
         )
     }, [value])
+
+
+
     return (
         <div>
             <Calendar
                 onChange={onChange}
                 value={value}
             />
-            <div>
-                <button className={timeSlots[9]}>9-10</button>
-                <button className={timeSlots[10]}>10-11</button>
-                <button className={timeSlots[11]}>11-12</button>
-                <button className={timeSlots[12]}>12-13</button>
-                <button className={timeSlots[13]}>13-14</button>
-                <button className={timeSlots[14]}>14-15</button>
-                <button className={timeSlots[15]}>15-16</button>
-                <button className={timeSlots[16]}>16-17</button>
-            </div>
 
+            {value.getDay() !== 6 && value.getDay() !== 0?
+                <div>
+                    <button className={timeSlots[9]}>9-10</button>
+                    <button className={timeSlots[10]}>10-11</button>
+                    <button className={timeSlots[11]}>11-12</button>
+                    <button className={timeSlots[12]}>12-13</button>
+                    <button className={timeSlots[13]}>13-14</button>
+                    <button className={timeSlots[14]}>14-15</button>
+                    <button className={timeSlots[15]}>15-16</button>
+                    <button className={timeSlots[16]}>16-17</button>
+                </div> : <div></div>}
         </div>
 );
 
