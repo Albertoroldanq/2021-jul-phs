@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import './BookingCalendar.css'
 
 const BookingCalendar = (props) => {
 
@@ -12,14 +13,14 @@ const BookingCalendar = (props) => {
 
     const [bookedAppointments, setBookedAppointments] = useState([])
     const timeSlots = {
-        9: "Available",
-        10: "Available",
-        11: "Available",
-        12: "Available",
-        13: "Available",
-        14: "Available",
-        15: "Available",
-        16: "Available"
+        9: "available",
+        10: "available",
+        11: "available",
+        12: "available",
+        13: "available",
+        14: "available",
+        15: "available",
+        16: "available"
     }
     bookedAppointments.forEach(appointment => {
         timeSlots[appointment] = "booked"
@@ -38,7 +39,6 @@ const BookingCalendar = (props) => {
                 onChange={onChange}
                 value={value}
             />
-            <p>{bookedAppointments[0]}</p>
             <div>
                 <button className={timeSlots[9]}>9-10</button>
                 <button className={timeSlots[10]}>10-11</button>

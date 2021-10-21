@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import BookingCalendar from "../BookingCalendar/BookingCalendar";
 import DoctorDropdownMenu from "../DoctorDropdownMenu/DoctorDropdownMenu";
 
+
 const AppointmentBookingPage = () => {
     const [currentDoctor, setCurrentDoctor] = useState([]);
 
