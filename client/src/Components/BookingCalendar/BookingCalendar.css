@@ -2,3 +2,66 @@
     display: none;
 }
 
+.availabilityContainer {
+    display: flex;
+    height: 350px;
+}
+
+.calendar {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    height: 350px;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
+    height: 350px;
+
+}
+
+div button {
+    border-radius: 4px;
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    padding: 5px 15px;
+    margin: 10px;
+}
+
+div button:hover {
+    border-color: #4164D0;
+    color: #4164D0;
+}
+
+.textInput {
+    padding: 8px 100px 8px 8px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.textareaInput {
+    padding: 8px 8px 8px 8px;
+    width: 575px;
+    height: 196px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.bookButton {
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #4164D0;
+    padding: 8px 20px;
+}
+
+.bookButton:hover {
+    color: #ffffff;
+    background-color: #294086;
+}
+
