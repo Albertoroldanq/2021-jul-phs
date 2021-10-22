@@ -41,7 +41,11 @@ const BookingCalendar = (props) => {
                 setVisibility('')
             })
         )
-        setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&date=${date}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
+        if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null) && (appointmentDescription !== null || '')) {
+            setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&day=${day}&month=${month}&year=${year}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
+        } else {
+            setBookedSuccessLink('/')
+        }
     }, [value, patientName, appointmentDescription, patientEmail, appointmentTime ])
 
     const handleSubmit = async () => {
