@@ -6,6 +6,7 @@ import './BookingCalendar.css'
 
 const BookingCalendar = (props) => {
     const [value, onChange] = useState(new Date())
+    const [minDate, setMinDate] = useState(new Date())
     const [bookedAppointments, setBookedAppointments] = useState([])
     const [appointmentTime, setAppointmentTime] = useState(null)
     const [patientName, setPatientName] = useState(null)
@@ -70,7 +71,7 @@ const BookingCalendar = (props) => {
                     "description": appointmentDescription
                 })
 
-            }).then( () => {
+            }).then(() => {
             })
         }
     }
@@ -80,6 +81,7 @@ const BookingCalendar = (props) => {
             <Calendar
                 onChange={onChange}
                 value={value}
+                minDate={minDate}
             />
             <div className={displaytimeSlotsAndDates}>
                 {value.getDay() !== 6 && value.getDay() !== 0 ?
@@ -129,7 +131,8 @@ const BookingCalendar = (props) => {
                     <input type="textarea" required
                            placeholder="Provide a brief description and symptoms for your appointment"
                            name="description" onChange={e => setAppointmentDescription(e.target.value)}/>
-                   <Link className={bookButtonState} to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}>Book</Link>
+                    <Link className={bookButtonState} to={bookedSuccessLink} value="Book an appointment!"
+                          onClick={handleSubmit}>Book</Link>
                 </div>
             </div>
         </div>
