@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useLocation, Link} from "react-router-dom";
+import './AppointmentBooked.css'
 
 const AppointmentBooked = () => {
     const search = useLocation().search;
@@ -15,18 +16,22 @@ const AppointmentBooked = () => {
 
     return (
         <div>
-            <Link to='/'>Go Back</Link>
-            <div>
-                <h2>Successfully Booked!</h2>
-            </div>
-            <div>
-                <p>Hi {firstName} your appointment has been booked with Dr. {doctorLastName} at {time}h
-                    on {day}/{month}/{year}</p>
-                <p>These are the appointment details provided by you:</p>
-                <p>{description}</p>
-            </div>
+            <h2>Appointment booked!</h2>
+            <p>You will receive a confirmation email shortly.</p>
 
-            <p></p>
+            <h4>Details</h4>
+            <h5>Doctor</h5>
+            <p>Dr. {doctorLastName}</p>
+            <h5>Day</h5>
+            <p>{day}/{month}/{year}</p>
+            <h5>Time</h5>
+            <p>{time}h</p>
+            <h5>Full Name</h5>
+            <p>{name}</p>
+            <h5>Described symptoms</h5>
+            <p>{description}</p>
+
+            <button className="goBackButton"><Link to='/'>Go back</Link></button>
         </div>
     );
 }
