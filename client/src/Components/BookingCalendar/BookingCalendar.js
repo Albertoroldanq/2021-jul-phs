@@ -5,13 +5,20 @@ import 'react-calendar/dist/Calendar.css';
 import './BookingCalendar.css'
 
 const BookingCalendar = (props) => {
-    const [value, onChange] = useState(new Date())
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+
+    const [value, onChange] = useState(tomorrow)
+    const [minDate, setMinDate] = useState(tomorrow)
     const [bookedAppointments, setBookedAppointments] = useState([])
     const [appointmentTime, setAppointmentTime] = useState(null)
     const [patientName, setPatientName] = useState(null)
     const [patientEmail, setPatientEmail] = useState(null)
     const [appointmentDescription, setAppointmentDescription] = useState(null)
     const [displaytimeSlotsAndDates, setVisibility] = useState('hidden')
+    const [bookedSuccessLink, setBookedSuccessLink] = useState('')
+    const [bookButtonState, setBookButtonState] = useState('disabled')
 
     const day = value.getDate().toString()
     const month = (value.getMonth() + 1).toString()
@@ -40,34 +47,42 @@ const BookingCalendar = (props) => {
                 setVisibility('')
             })
         )
-    }, [value])
+        if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null) && (appointmentDescription !== null || '')) {
+            setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&day=${day}&month=${month}&year=${year}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
+            setBookButtonState('enabled')
+        } else if ((appointmentTime === null || '') || (patientName === null || '') || (patientEmail === null) || (appointmentDescription === null || '')) {
+            setBookedSuccessLink('/')
+            setBookButtonState('disabled')
+        }
+    }, [value, patientName, appointmentDescription, patientEmail, appointmentTime])
 
     const handleSubmit = async () => {
 
-        const rawResponse = await fetch('http://localhost:5000/appointmentBooked/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "date": date,
-                "doctorId": props.currentDoctor._id,
-                "time": appointmentTime,
-                "name": patientName,
-                "email": patientEmail,
-                "description": appointmentDescription
+        if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null) && (appointmentDescription !== null || '')) {
+
+            const rawResponse = await fetch('http://localhost:5000/appointmentBooked/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "date": date,
+                    "doctorId": props.currentDoctor._id,
+                    "time": appointmentTime,
+                    "name": patientName,
+                    "email": patientEmail,
+                    "description": appointmentDescription
+                })
+
+            }).then(() => {
             })
-
-        })
-
-        const response = await rawResponse.json()
-        console.log(response)
-
+        }
     }
 
     return (
         <div>
+
             <div className="availabilityContainer">
                 <Calendar onChange={onChange} value={value} className="calendar"/>
                 <div className={displaytimeSlotsAndDates}>
@@ -105,11 +120,7 @@ const BookingCalendar = (props) => {
                                 setAppointmentTime(16)
                             }}>16-17
                             </button>
-                        </div>
-                    : <div></div>}
-                </div>
-            </div>
-            <div>
+ <div>
                 <h4>3. Introduce your details</h4>
                 <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
                 <input type="hidden" value={date} name="date"/>
@@ -130,7 +141,13 @@ const BookingCalendar = (props) => {
                 <div>
                 <button value="Book an appointment!" onClick={handleSubmit} className="bookButton">Book an appointment</button>
                 </div>
+
             </div>
+                        </div>
+                    : <div></div>}
+                </div>
+            </div>
+           
         </div>
     )
 }
