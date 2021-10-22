@@ -13,6 +13,7 @@ const BookingCalendar = (props) => {
     const [appointmentDescription, setAppointmentDescription] = useState(null)
     const [displaytimeSlotsAndDates, setVisibility] = useState('hidden')
     const [bookedSuccessLink, setBookedSuccessLink] = useState('')
+    const [bookButtonState, setBookButtonState] = useState('disabled')
 
     const day = value.getDate().toString()
     const month = (value.getMonth() + 1).toString()
@@ -43,10 +44,12 @@ const BookingCalendar = (props) => {
         )
         if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null) && (appointmentDescription !== null || '')) {
             setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&day=${day}&month=${month}&year=${year}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
-        } else {
+            setBookButtonState('enabled')
+        } else if ((appointmentTime === null || '') || (patientName === null || '') || (patientEmail === null) || (appointmentDescription === null || '')) {
             setBookedSuccessLink('/')
+            setBookButtonState('disabled')
         }
-    }, [value, patientName, appointmentDescription, patientEmail, appointmentTime ])
+    }, [value, patientName, appointmentDescription, patientEmail, appointmentTime])
 
     const handleSubmit = async () => {
 
@@ -126,7 +129,7 @@ const BookingCalendar = (props) => {
                     <input type="textarea" required
                            placeholder="Provide a brief description and symptoms for your appointment"
                            name="description" onChange={e => setAppointmentDescription(e.target.value)}/>
-                   <Link to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}>Book</Link>
+                   <Link className={bookButtonState} to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}>Book</Link>
                 </div>
             </div>
         </div>
