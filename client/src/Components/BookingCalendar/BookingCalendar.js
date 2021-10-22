@@ -41,7 +41,7 @@ const BookingCalendar = (props) => {
                 setVisibility('')
             })
         )
-        setBookedSuccessLink(`/appointmentBooked?date=${date}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
+        setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&date=${date}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
     }, [value, patientName, appointmentDescription, patientEmail, appointmentTime ])
 
     const handleSubmit = async () => {

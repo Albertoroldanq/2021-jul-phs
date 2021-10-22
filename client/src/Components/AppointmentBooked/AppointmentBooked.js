@@ -15,7 +15,9 @@ const AppointmentBooked = () => {
                 <h2>Successfully Booked!</h2>
             </div>
             <div>
-                <p>Hi {name} your appoint has been booked with Dr. {doctorLastName} at {time} on the {date}</p>
+                <p>Hi {name} your appointment has been booked with Dr. {doctorLastName} at {time} on the {date}</p>
+                <p>These are the appointment details provided by you:</p>
+                <p>{description}</p>
             </div>
 
             <p></p>
