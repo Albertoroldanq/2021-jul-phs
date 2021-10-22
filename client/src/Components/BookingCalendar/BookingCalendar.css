@@ -2,3 +2,7 @@
     display: none;
 }
 
+.availabilityContainer {
+    border: 2px solid red;
+}
+
