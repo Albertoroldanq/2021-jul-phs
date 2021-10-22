@@ -123,22 +123,23 @@ const BookingCalendar = (props) => {
                             setAppointmentTime(16)
                         }}>16-17
                         </button>
+                        <div>
+                            <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
+                            <input type="hidden" value={date} name="date"/>
+                            <input type="hidden" value={appointmentTime} name="time"/>
+                            <input type="text" required placeholder="Enter your name" name="name"
+                                   onChange={e => setPatientName(e.target.value)}/>
+                            <input type="email" required placeholder="Enter your email" name="email"
+                                   onChange={e => setPatientEmail(e.target.value)}/>
+                            <input type="textarea" required
+                                   placeholder="Provide a brief description and symptoms for your appointment"
+                                   name="description" onChange={e => setAppointmentDescription(e.target.value)}/>
+                            <Link className={bookButtonState} to={bookedSuccessLink} value="Book an appointment!"
+                                  onClick={handleSubmit}>Book</Link>
+                        </div>
                     </div>
                     : <div></div>}
-                <div>
-                    <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
-                    <input type="hidden" value={date} name="date"/>
-                    <input type="hidden" value={appointmentTime} name="time"/>
-                    <input type="text" required placeholder="Enter your name" name="name"
-                           onChange={e => setPatientName(e.target.value)}/>
-                    <input type="email" required placeholder="Enter your email" name="email"
-                           onChange={e => setPatientEmail(e.target.value)}/>
-                    <input type="textarea" required
-                           placeholder="Provide a brief description and symptoms for your appointment"
-                           name="description" onChange={e => setAppointmentDescription(e.target.value)}/>
-                    <Link className={bookButtonState} to={bookedSuccessLink} value="Book an appointment!"
-                          onClick={handleSubmit}>Book</Link>
-                </div>
+                
             </div>
         </div>
     )
