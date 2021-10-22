@@ -69,10 +69,10 @@ const BookingCalendar = (props) => {
     return (
         <div>
             <div className="availabilityContainer">
-                <Calendar onChange={onChange} value={value}/>
+                <Calendar onChange={onChange} value={value} className="calendar"/>
                 <div className={displaytimeSlotsAndDates}>
                     {value.getDay() !== 6 && value.getDay() !== 0 ?
-                        <div>
+                        <div className="buttonContainer">
                             <button className={timeSlots[9]} onClick={() => {
                                 setAppointmentTime(9)
                             }}>9-10
@@ -114,18 +114,21 @@ const BookingCalendar = (props) => {
                 <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
                 <input type="hidden" value={date} name="date"/>
                 <input type="hidden" value={appointmentTime} name="time"/>
-                <h6>Full name</h6>
+                <h5>Full name</h5>
                 <input type="text" required placeholder="Enter your name" name="name"
-                       onChange={e => setPatientName(e.target.value)}/>
-                <h6>Email</h6>
+                       onChange={e => setPatientName(e.target.value)} className="textInput"/>
+                <h5>Email</h5>
                 <input type="email" required placeholder="Enter your email" name="email"
-                       onChange={e => setPatientEmail(e.target.value)}/>
-                <h6>Describe symptoms</h6>
-                <input type="textarea" required
-                       placeholder="Provide a brief description and symptoms for your appointment"
-                       name="description" onChange={e => setAppointmentDescription(e.target.value)}/>
+                       onChange={e => setPatientEmail(e.target.value)} className="textInput"/>
+                <h5>Describe symptoms</h5>
+                <textarea type="textarea"
+                       rows="5"
+                       cols="1"
+                       required
+                       placeholder="Tell us more"
+                       name="description" onChange={e => setAppointmentDescription(e.target.value)} className="textareaInput"/>
                 <div>
-                <button value="Book an appointment!" onClick={handleSubmit}>Book an appointment</button>
+                <button value="Book an appointment!" onClick={handleSubmit} className="bookButton">Book an appointment</button>
                 </div>
             </div>
         </div>
