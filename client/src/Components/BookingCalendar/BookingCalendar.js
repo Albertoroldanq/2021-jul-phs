@@ -44,26 +44,27 @@ const BookingCalendar = (props) => {
 
     const handleSubmit = async () => {
 
-        const rawResponse = await fetch('http://localhost:5000/appointmentBooked/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "date": date,
-                "doctorId": props.currentDoctor._id,
-                "time": appointmentTime,
-                "name": patientName,
-                "email": patientEmail,
-                "description": appointmentDescription
+        if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null) && (appointmentDescription !== null || '')) {
+
+            const rawResponse = await fetch('http://localhost:5000/appointmentBooked/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "date": date,
+                    "doctorId": props.currentDoctor._id,
+                    "time": appointmentTime,
+                    "name": patientName,
+                    "email": patientEmail,
+                    "description": appointmentDescription
+                })
+
             })
 
-        })
 
-        const response = await rawResponse.json()
-        console.log(response)
-
+        }
     }
 
     return (
