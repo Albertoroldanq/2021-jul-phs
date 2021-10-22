@@ -5,8 +5,12 @@ import 'react-calendar/dist/Calendar.css';
 import './BookingCalendar.css'
 
 const BookingCalendar = (props) => {
-    const [value, onChange] = useState(new Date())
-    const [minDate, setMinDate] = useState(new Date())
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+
+    const [value, onChange] = useState(tomorrow)
+    const [minDate, setMinDate] = useState(tomorrow)
     const [bookedAppointments, setBookedAppointments] = useState([])
     const [appointmentTime, setAppointmentTime] = useState(null)
     const [patientName, setPatientName] = useState(null)
@@ -82,6 +86,7 @@ const BookingCalendar = (props) => {
                 onChange={onChange}
                 value={value}
                 minDate={minDate}
+
             />
             <div className={displaytimeSlotsAndDates}>
                 {value.getDay() !== 6 && value.getDay() !== 0 ?
