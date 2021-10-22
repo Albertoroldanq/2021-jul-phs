@@ -12,6 +12,7 @@ const BookingCalendar = (props) => {
     const [patientEmail, setPatientEmail] = useState(null)
     const [appointmentDescription, setAppointmentDescription] = useState(null)
     const [displaytimeSlotsAndDates, setVisibility] = useState('hidden')
+    const [bookedSuccessLink, setBookedSuccessLink] = useState('')
 
     const day = value.getDate().toString()
     const month = (value.getMonth() + 1).toString()
@@ -40,7 +41,8 @@ const BookingCalendar = (props) => {
                 setVisibility('')
             })
         )
-    }, [value])
+        setBookedSuccessLink(`/appointmentBooked?date=${date}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
+    }, [value, patientName, appointmentDescription, patientEmail, appointmentTime ])
 
     const handleSubmit = async () => {
 
@@ -61,9 +63,8 @@ const BookingCalendar = (props) => {
                     "description": appointmentDescription
                 })
 
+            }).then( () => {
             })
-
-
         }
     }
 
@@ -121,7 +122,7 @@ const BookingCalendar = (props) => {
                     <input type="textarea" required
                            placeholder="Provide a brief description and symptoms for your appointment"
                            name="description" onChange={e => setAppointmentDescription(e.target.value)}/>
-                    <button value="Book an appointment!" onClick={handleSubmit}>Book</button>
+                   <Link to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}>Book</Link>
                 </div>
             </div>
         </div>
