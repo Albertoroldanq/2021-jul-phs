@@ -1,11 +1,4 @@
-* {
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
-}
 
-.booked, .hidden {
-    display: none;
-}
 
 .availabilityContainer {
     display: flex;
@@ -31,65 +24,6 @@
     justify-content: flex-start;
     padding-left: 20px;
     text-align: center;
-}
-
-div button {
-    font-weight: 500;
-    padding: 5px 15px;
-    border: none;
-}
-
-div button:hover {
-    border-color: #4164D0;
-    color: #4164D0;
-}
-
-.textInput {
-    padding: 8px 100px 8px 8px;
-    border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-}
-
-.bookButton {
-    border-radius: 5px;
-    color: #ffffff;
-    background-color: #4164D0;
-    padding: 20px 50px;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.bookButton.disabled {
-    background: #6d6d71;
-    opacity: 0.5;
-}
-.bookButton.disabled:hover {
-    background: #6d6d71;
-    cursor: default;
-}
-
-.bookButton:hover {
-    color: #ffffff;
-    background-color: #294086;
-}
-
-.available {
-    width: 160px;
-    padding: 8px 25px;
-    border: 1px solid #787F90;
-    border-radius: 10px;
-    color: #787F90;
-    font-size: 16px;
-    background: none;
-    margin-bottom: 10px;
-}
-
-.available:hover, .available:focus, .available:active {
-    cursor: pointer;
-    border: 1px solid #4164D0;
-    background: #4164D0;
-    color: #fff;
 }
 
 .react-calendar button {
@@ -118,11 +52,6 @@ div button:hover {
     color: #d10000;
 }
 
-h2 {
-    font-size: 18px;
-    font-weight: 400;
-}
-
 .bookingForm input, .bookingForm label, .bookingForm textarea{
     display: block;
     font-size: 16px;
@@ -135,37 +64,8 @@ h2 {
 }
 
 
-.bookingForm input {
-    margin: 5px 0 20px 0;
-}
-
-.bookingForm textarea {
-    margin: 5px 0 0px 0;
-}
-
-.bookingForm label {
-    color: #333333;
-}
-.bookingForm input {
-    border: 1px solid #787F90;
-}
-
 .patientDetailsForm, .availabilityContainer {
     border-top: 1px solid rgba(120, 127, 144, 0.5);
     margin-top: 50px;
     padding-top: 10px;
-}
-
-.hideDataValidationErrorMessage {
-    display: none;
-}
-
-.dataValidationErrorMessage {
-    height: 80px;
-    padding: 20px 0;
-}
-
-.showDataValidationErrorMessage{
-    margin: auto;
-    color: #d10000;
 }

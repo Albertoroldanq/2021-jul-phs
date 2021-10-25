@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import BookingCalendar from "../BookingCalendar/BookingCalendar";
+import React from 'react'
+import './TimeSlots.css'
 
 const TimeSlots = (props) => {
 

@@ -19,7 +19,6 @@ const BookingCalendar = (props) => {
     const [minDate, setMinDate] = useState(tomorrow)
     const [bookedAppointments, setBookedAppointments] = useState([])
     const [appointmentTime, setAppointmentTime] = useState(null)
-    const [displaytimeSlotsAndDates, setVisibility] = useState('hidden')
     const [day, setDay] = useState(value.getDate().toString())
     const [month, setMonth] = useState((value.getMonth() + 1).toString())
     const [year, setYear] = useState(value.getFullYear().toString())
@@ -40,7 +39,8 @@ const BookingCalendar = (props) => {
                                      day={day} month={month} year={year} date={date} value={value}/>
             </div>
             :
-            <div id="availabilityContainer" className={displaytimeSlotsAndDates}>
+            <div id="availabilityContainer" className="availabilityContainer">
+                <h2>2. Choose day and time</h2>
                 <Calendar onChange={onChange} value={value} minDate={minDate} className="calendar"/>
                 <div className={"calendarErrorMessage"}>
                     <p>The surgery is closed on the weekends. Please, select a day from Monday to Friday.</p>

@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom'
 
+import'./BookAppointmentForm.css'
+
 const BookAppointmentForm = (props) => {
     const [patientName, setPatientName] = useState(null)
     const [patientEmail, setPatientEmail] = useState(null)
