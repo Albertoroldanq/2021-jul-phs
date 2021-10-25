@@ -4,6 +4,9 @@ import {Link} from 'react-router-dom'
 import 'react-calendar/dist/Calendar.css';
 import './BookingCalendar.css'
 
+import '../TimeSlots/TimeSlots'
+import TimeSlots from "../TimeSlots/TimeSlots";
+
 const BookingCalendar = (props) => {
     const today = new Date()
     const tomorrow = new Date(today)
@@ -28,27 +31,6 @@ const BookingCalendar = (props) => {
     const month = (value.getMonth() + 1).toString()
     const year = value.getFullYear().toString()
     const date = day + month + year
-    const timeSlots = {
-        9: "available",
-        10: "available",
-        11: "available",
-        12: "available",
-        13: "available",
-        14: "available",
-        15: "available",
-        16: "available"
-    }
-
-    const timeSlotsSelected = {
-        9: "unselected",
-        10: "unselected",
-        11: "unselected",
-        12: "unselected",
-        13: "unselected",
-        14: "unselected",
-        15: "unselected",
-        16: "unselected"
-    }
 
     const validateEmail = (mail) => {
         const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -68,10 +50,6 @@ const BookingCalendar = (props) => {
             setDataValidationErrorMessage('hideDataValidationErrorMessage')
         }
     }
-
-    bookedAppointments.forEach(appointment => {
-        timeSlots[appointment] = "booked"
-    })
 
     useEffect(() => {
         fetch('http://localhost:5000/doctors/' + props.currentDoctor._id + '/' + date).then(
@@ -126,41 +104,7 @@ const BookingCalendar = (props) => {
                 <div className={"calendarAndTimeSlots"}>
                     <Calendar className="calendar" onChange={onChange} value={value} minDate={minDate} minDetail="month"
                               next2Label={null} prev2Label={null} maxDate={maxDate}/>
-                    <div className="buttonContainer">
-                        <button className={timeSlots[9]} onClick={() => {
-                            setAppointmentTime(9)
-                        }}>9 - 10 AM
-                        </button>
-                        <button className={timeSlots[10]} onClick={() => {
-                            setAppointmentTime(10)
-                            setTimeSlotSelected(10)
-                        }}>10 - 11 AM
-                        </button>
-                        <button className={timeSlots[11]} onClick={() => {
-                            setAppointmentTime(11)
-                        }}>11 - 12 PM
-                        </button>
-                        <button className={timeSlots[12]} onClick={() => {
-                            setAppointmentTime(12)
-                        }}>12 - 13 PM
-                        </button>
-                        <button className={timeSlots[13]} onClick={() => {
-                            setAppointmentTime(13)
-                        }}>1 - 2 PM
-                        </button>
-                        <button className={timeSlots[14]} onClick={() => {
-                            setAppointmentTime(14)
-                        }}>2 - 3 PM
-                        </button>
-                        <button className={timeSlots[15]} onClick={() => {
-                            setAppointmentTime(15)
-                        }}>3 - 4 PM
-                        </button>
-                        <button className={timeSlots[16]} onClick={() => {
-                            setAppointmentTime(16)
-                        }}>4 - 5 PM
-                        </button>
-                    </div>
+                    <TimeSlots appointmentTime={appointmentTime} setAppointmentTime={setAppointmentTime} bookedAppointments={bookedAppointments} />
                 </div>
                 <div className={"patientDetailsForm"}>
                     <h2>3. Introduce your details</h2>
