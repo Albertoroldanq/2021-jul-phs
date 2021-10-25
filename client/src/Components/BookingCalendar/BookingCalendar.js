@@ -19,6 +19,7 @@ const BookingCalendar = (props) => {
     const [displaytimeSlotsAndDates, setVisibility] = useState('hidden')
     const [bookedSuccessLink, setBookedSuccessLink] = useState('')
     const [bookButtonState, setBookButtonState] = useState('disabled')
+    const [timeSlotSelected, setTimeSlotSelected] = useState(null)
 
     const day = value.getDate().toString()
     const month = (value.getMonth() + 1).toString()
@@ -35,9 +36,19 @@ const BookingCalendar = (props) => {
         16: "available"
     }
 
+    const timeSlotsSelected = {
+        9: "unselected",
+        10: "unselected",
+        11: "unselected",
+        12: "unselected",
+        13: "unselected",
+        14: "unselected",
+        15: "unselected",
+        16: "unselected"
+    }
+
     bookedAppointments.forEach(appointment => {
         timeSlots[appointment] = "booked"
-
     })
 
     useEffect(() => {
@@ -47,6 +58,7 @@ const BookingCalendar = (props) => {
                 setVisibility('')
             })
         )
+
         if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null) && (appointmentDescription !== null || '')) {
             setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&day=${day}&month=${month}&year=${year}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
             setBookButtonState('enabled')
@@ -54,7 +66,8 @@ const BookingCalendar = (props) => {
             setBookedSuccessLink('/')
             setBookButtonState('disabled')
         }
-    }, [value, patientName, appointmentDescription, patientEmail, appointmentTime])
+    }, [props.currentDoctor, value, patientName, appointmentDescription, patientEmail, appointmentTime])
+
 
     const handleSubmit = async () => {
 
@@ -74,26 +87,25 @@ const BookingCalendar = (props) => {
                     "email": patientEmail,
                     "description": appointmentDescription
                 })
-
-            }).then(() => {
             })
         }
     }
 
     return (
         <div>
-
-            <div className="availabilityContainer">
-                <Calendar onChange={onChange} value={value} className="calendar"/>
-                <div className={displaytimeSlotsAndDates}>
+            <div >
+                <Calendar onChange={onChange} value={value} minDate={minDate} className="calendar"/>
+                <div id="availabilityContainer" className={displaytimeSlotsAndDates}>
                     {value.getDay() !== 6 && value.getDay() !== 0 ?
                         <div className="buttonContainer">
                             <button className={timeSlots[9]} onClick={() => {
                                 setAppointmentTime(9)
+
                             }}>9-10
                             </button>
                             <button className={timeSlots[10]} onClick={() => {
                                 setAppointmentTime(10)
+                                setTimeSlotSelected(10)
                             }}>10-11
                             </button>
                             <button className={timeSlots[11]} onClick={() => {
@@ -120,34 +132,35 @@ const BookingCalendar = (props) => {
                                 setAppointmentTime(16)
                             }}>16-17
                             </button>
- <div>
-                <h4>3. Introduce your details</h4>
-                <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
-                <input type="hidden" value={date} name="date"/>
-                <input type="hidden" value={appointmentTime} name="time"/>
-                <h5>Full name</h5>
-                <input type="text" required placeholder="Enter your name" name="name"
-                       onChange={e => setPatientName(e.target.value)} className="textInput"/>
-                <h5>Email</h5>
-                <input type="email" required placeholder="Enter your email" name="email"
-                       onChange={e => setPatientEmail(e.target.value)} className="textInput"/>
-                <h5>Describe symptoms</h5>
-                <textarea type="textarea"
-                       rows="5"
-                       cols="1"
-                       required
-                       placeholder="Tell us more"
-                       name="description" onChange={e => setAppointmentDescription(e.target.value)} className="textareaInput"/>
-                <div>
-                <button value="Book an appointment!" onClick={handleSubmit} className="bookButton">Book an appointment</button>
-                </div>
+                            <div>
+                                <h4>3. Introduce your details</h4>
+                                <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
+                                <input type="hidden" value={date} name="date"/>
+                                <input type="hidden" value={appointmentTime} name="time"/>
+                                <h5>Full name</h5>
+                                <input type="text" required placeholder="Enter your name" name="name"
+                                       onChange={e => setPatientName(e.target.value)} className="textInput"/>
+                                <h5>Email</h5>
+                                <input type="email" required placeholder="Enter your email" name="email"
+                                       onChange={e => setPatientEmail(e.target.value)} className="textInput"/>
+                                <h5>Describe symptoms</h5>
+                                <textarea type="textarea"
+                                          rows="5"
+                                          cols="1"
+                                          required
+                                          placeholder="Tell us more"
+                                          name="description" onChange={e => setAppointmentDescription(e.target.value)}
+                                          className="textareaInput"/>
+                                <div>
+                                    <Link to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}
+                                          className={bookButtonState + " bookButton"}>Book an appointment</Link>
+                                </div>
 
-            </div>
+                            </div>
                         </div>
-                    : <div></div>}
+                        : <div></div>}
                 </div>
             </div>
-           
         </div>
     )
 }

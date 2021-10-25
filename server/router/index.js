@@ -60,7 +60,6 @@ function router(app) {
             const db = client.db('phs')
             const doctorsCollection = db.collection('doctors')
 
-
             const doctors = await doctorsCollection.updateOne({_id: ObjectId(doctorId)}, {$push: {[`appointments.${date}`]: data}})
 
             response.json(dataToDisplay)
