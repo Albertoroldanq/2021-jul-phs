@@ -24,18 +24,32 @@ const BookingCalendar = (props) => {
     const [year, setYear] = useState(value.getFullYear().toString())
     const [date, setDate] = useState(day + month + year)
 
+    const handleDatePicker = () => {
+        setDay(value.getDate().toString())
+        setMonth((value.getMonth() + 1).toString())
+        setMonth((value.getMonth() + 1).toString())
+        setYear(value.getFullYear().toString())
+        setDate(day + month + year)
+    }
+
+    useEffect(() => {
+        handleDatePicker()
+    }, [value])
 
     return (
         value.getDay() !== 6 && value.getDay() !== 0 ?
             <div id="availabilityContainer" className={"availabilityContainer"}>
                 <h2>2. Choose day and time</h2>
                 <div className={"calendarAndTimeSlots"}>
-                    <Calendar className="calendar" onChange={onChange} value={value} minDate={minDate} minDetail="month"
+                    <Calendar className="calendar" onChange={onChange} value={value} minDate={minDate}
+                              minDetail="month"
                               next2Label={null} prev2Label={null} maxDate={maxDate}/>
-                    <TimeSlots appointmentTime={appointmentTime} setAppointmentTime={setAppointmentTime} bookedAppointments={bookedAppointments} />
+                    <TimeSlots appointmentTime={appointmentTime} setAppointmentTime={setAppointmentTime}
+                               bookedAppointments={bookedAppointments}/>
                 </div>
                 <BookAppointmentForm appontmentTime={appointmentTime} currentDoctor={props.currentDoctor}
-                                     date={date} setBookedAppointments={setBookedAppointments} appointmentTime={appointmentTime}
+                                     date={date} setBookedAppointments={setBookedAppointments}
+                                     appointmentTime={appointmentTime}
                                      day={day} month={month} year={year} date={date} value={value}/>
             </div>
             :

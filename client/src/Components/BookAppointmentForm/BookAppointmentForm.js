@@ -42,9 +42,9 @@ const BookAppointmentForm = (props) => {
                     "date": props.date,
                     "doctorId": props.currentDoctor._id,
                     "time": props.appointmentTime,
-                    "name": props.patientName,
-                    "email": props.patientEmail,
-                    "description": props.appointmentDescription
+                    "name": patientName,
+                    "email": patientEmail,
+                    "description": appointmentDescription
                 })
             })
         }

@@ -54,8 +54,6 @@ function router(app) {
             }
 
         let dataToDisplay = data
-        dataToDisplay.date = date
-        dataToDisplay.hello = 'hello'
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
             const db = client.db('phs')
             const doctorsCollection = db.collection('doctors')
