@@ -4,3 +4,12 @@ select {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
+
+.doctorsDropdown {
+    width: 100%;
+    border: 1px solid #787F90;
+    border-radius: 10px;
+    padding: 17px 15px 17px 22px;
+    color: #787F90;
+    font-size: 16px;
+}

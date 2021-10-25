@@ -7,7 +7,9 @@ import './BookingCalendar.css'
 const BookingCalendar = (props) => {
     const today = new Date()
     const tomorrow = new Date(today)
+    const maxDate = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)
+    maxDate.setDate(maxDate.getDate() + 90)
 
     const [value, onChange] = useState(tomorrow)
     const [minDate, setMinDate] = useState(tomorrow)
@@ -92,76 +94,75 @@ const BookingCalendar = (props) => {
     }
 
     return (
-        <div>
-            <div >
-                <Calendar onChange={onChange} value={value} minDate={minDate} className="calendar"/>
-                <div id="availabilityContainer" className={displaytimeSlotsAndDates}>
-                    {value.getDay() !== 6 && value.getDay() !== 0 ?
-                        <div className="buttonContainer">
-                            <button className={timeSlots[9]} onClick={() => {
-                                setAppointmentTime(9)
-
-                            }}>9-10
-                            </button>
-                            <button className={timeSlots[10]} onClick={() => {
-                                setAppointmentTime(10)
-                                setTimeSlotSelected(10)
-                            }}>10-11
-                            </button>
-                            <button className={timeSlots[11]} onClick={() => {
-                                setAppointmentTime(11)
-                            }}>11-12
-                            </button>
-                            <button className={timeSlots[12]} onClick={() => {
-                                setAppointmentTime(12)
-                            }}>12-13
-                            </button>
-                            <button className={timeSlots[13]} onClick={() => {
-                                setAppointmentTime(13)
-                            }}>13-14
-                            </button>
-                            <button className={timeSlots[14]} onClick={() => {
-                                setAppointmentTime(14)
-                            }}>14-15
-                            </button>
-                            <button className={timeSlots[15]} onClick={() => {
-                                setAppointmentTime(15)
-                            }}>15-16
-                            </button>
-                            <button className={timeSlots[16]} onClick={() => {
-                                setAppointmentTime(16)
-                            }}>16-17
-                            </button>
-                            <div>
-                                <h4>3. Introduce your details</h4>
-                                <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
-                                <input type="hidden" value={date} name="date"/>
-                                <input type="hidden" value={appointmentTime} name="time"/>
-                                <h5>Full name</h5>
-                                <input type="text" required placeholder="Enter your name" name="name"
-                                       onChange={e => setPatientName(e.target.value)} className="textInput"/>
-                                <h5>Email</h5>
-                                <input type="email" required placeholder="Enter your email" name="email"
-                                       onChange={e => setPatientEmail(e.target.value)} className="textInput"/>
-                                <h5>Describe symptoms</h5>
-                                <textarea type="textarea"
-                                          rows="5"
-                                          cols="1"
-                                          required
-                                          placeholder="Tell us more"
-                                          name="description" onChange={e => setAppointmentDescription(e.target.value)}
-                                          className="textareaInput"/>
-                                <div>
-                                    <Link to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}
-                                          className={bookButtonState + " bookButton"}>Book an appointment</Link>
-                                </div>
-
-                            </div>
+        value.getDay() !== 6 && value.getDay() !== 0 ?
+            <div id="availabilityContainer" className={"availabilityContainer"}>
+                <h2>2. Choose day and time</h2>
+                <div className={"calendarAndTimeSlots"}>
+                    <Calendar className="calendar" onChange={onChange} value={value} minDate={minDate} minDetail="month"
+                              next2Label={null} prev2Label={null} maxDate={maxDate}/>
+                <div className="buttonContainer">
+                    <button className={timeSlots[9]} onClick={() => {
+                        setAppointmentTime(9)
+                    }}>9 - 10 AM
+                    </button>
+                    <button className={timeSlots[10]} onClick={() => {
+                        setAppointmentTime(10)
+                        setTimeSlotSelected(10)
+                    }}>10 - 11 AM
+                    </button>
+                    <button className={timeSlots[11]} onClick={() => {
+                        setAppointmentTime(11)
+                    }}>11 - 12 PM
+                    </button>
+                    <button className={timeSlots[12]} onClick={() => {
+                        setAppointmentTime(12)
+                    }}>12 - 13 PM
+                    </button>
+                    <button className={timeSlots[13]} onClick={() => {
+                        setAppointmentTime(13)
+                    }}>1 - 2 PM
+                    </button>
+                    <button className={timeSlots[14]} onClick={() => {
+                        setAppointmentTime(14)
+                    }}>2 - 3 PM
+                    </button>
+                    <button className={timeSlots[15]} onClick={() => {
+                        setAppointmentTime(15)
+                    }}>3 - 4 PM
+                    </button>
+                    <button className={timeSlots[16]} onClick={() => {
+                        setAppointmentTime(16)
+                    }}>4 - 5 PM
+                    </button>
+                </div>
+                </div>
+                <div className={"patientDetailsForm"}>
+                    <h2>3. Introduce your details</h2>
+                    <div className={"bookingForm"}>
+                        <input type="hidden" value={props.currentDoctor._id} name="doctor"/>
+                        <input type="hidden" value={date} name="date"/>
+                        <input type="hidden" value={appointmentTime} name="time"/>
+                        <label>Full name</label>
+                        <input type="text" required placeholder="Enter your name" name="name"
+                               onChange={e => setPatientName(e.target.value)} className="textInput"/>
+                        <label>Email</label>
+                        <input type="email" required placeholder="Enter your email" name="email"
+                               onChange={e => setPatientEmail(e.target.value)} className="textInput"/>
+                        <label>Describe symptoms</label>
+                        <textarea className="textareaInput" type="textarea" rows="5" cols="1" placeholder="Tell us more"
+                                  name="description" onChange={e => setAppointmentDescription(e.target.value)}
+                                  required/>
+                        <div>
+                            <Link to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}
+                                  className={bookButtonState + " bookButton"}>Book an appointment</Link>
                         </div>
-                        : <div></div>}
+                    </div>
                 </div>
             </div>
-        </div>
+            :
+            <div id="availabilityContainer" className={displaytimeSlotsAndDates}>
+                <Calendar onChange={onChange} value={value} minDate={minDate} className="calendar"/>
+            </div>
     )
 }
 export default BookingCalendar
