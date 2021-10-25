@@ -9,14 +9,15 @@
     margin-bottom: 10px;
 }
 
-.available:hover, .available:focus, .available:active {
+.available:hover {
     cursor: pointer;
-    border: 1px solid #4164D0;
-    background: #4164D0;
+    border: 1px solid #787F90;
+    background: #787F90;
     color: #fff;
 }
 
-.selected {
+.available.selected {
+    border: 1px solid #4164D0;
     background: #4164D0;
     color: #fff;
 }
