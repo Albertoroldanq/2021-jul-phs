@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom'
 
-import'./BookAppointmentForm.css'
+import './BookAppointmentForm.css'
 
 const BookAppointmentForm = (props) => {
     const [patientName, setPatientName] = useState(null)
@@ -13,7 +13,7 @@ const BookAppointmentForm = (props) => {
 
     const validateEmail = (mail) => {
         const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if(mail !== null) {
+        if (mail !== null) {
             if (mail.match(mailformat)) {
                 return true;
             } else {
@@ -70,7 +70,7 @@ const BookAppointmentForm = (props) => {
         } else {
             validateEmail('hideDataValidationErrorMessage')
         }
-    }, [props.currentDoctor, props.value, patientName, appointmentDescription, patientEmail, props.appointmentTime])
+    }, [props.currentDoctor, props.day, patientName, appointmentDescription, patientEmail, props.appointmentTime])
 
     return (
         <div className={"patientDetailsForm"}>

@@ -27,7 +27,6 @@ const BookingCalendar = (props) => {
     const handleDatePicker = () => {
         setDay(value.getDate().toString())
         setMonth((value.getMonth() + 1).toString())
-        setMonth((value.getMonth() + 1).toString())
         setYear(value.getFullYear().toString())
         setDate(day + month + year)
     }
@@ -47,6 +46,7 @@ const BookingCalendar = (props) => {
                     <TimeSlots appointmentTime={appointmentTime} setAppointmentTime={setAppointmentTime}
                                bookedAppointments={bookedAppointments}/>
                 </div>
+
                 <BookAppointmentForm appontmentTime={appointmentTime} currentDoctor={props.currentDoctor}
                                      date={date} setBookedAppointments={setBookedAppointments}
                                      appointmentTime={appointmentTime}
