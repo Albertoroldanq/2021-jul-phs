@@ -32,8 +32,13 @@ const BookingCalendar = (props) => {
     }
 
     useEffect(() => {
+        fetch('http://localhost:5000/doctors/' + props.currentDoctor._id + '/' + date).then(
+            response => response.json().then(response => {
+                setBookedAppointments(response)
+            })
+        )
         handleDatePicker()
-    }, [value])
+    }, [value, props.currentDoctor, date, day])
 
     return (
         value.getDay() !== 6 && value.getDay() !== 0 ?
@@ -44,7 +49,7 @@ const BookingCalendar = (props) => {
                               minDetail="month"
                               next2Label={null} prev2Label={null} maxDate={maxDate}/>
                     <TimeSlots appointmentTime={appointmentTime} setAppointmentTime={setAppointmentTime}
-                               bookedAppointments={bookedAppointments}/>
+                               bookedAppointments={bookedAppointments} day={day} />
                 </div>
 
                 <BookAppointmentForm appontmentTime={appointmentTime} currentDoctor={props.currentDoctor}

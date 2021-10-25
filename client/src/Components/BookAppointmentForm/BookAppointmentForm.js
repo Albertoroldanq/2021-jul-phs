@@ -51,12 +51,6 @@ const BookAppointmentForm = (props) => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/doctors/' + props.currentDoctor._id + '/' + props.date).then(
-            response => response.json().then(response => {
-                props.setBookedAppointments(response)
-            })
-        )
-
         if ((props.appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null || '') && (validateEmail(patientEmail)) && (appointmentDescription !== null || '')) {
             setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&day=${props.day}&month=${props.month}&year=${props.year}&doctorLastName=${props.currentDoctor.lastName}&time=${props.appointmentTime}&name=${patientName}`)
             setBookButtonState('enabled')

@@ -16,6 +16,11 @@
     color: #fff;
 }
 
+.selected {
+    background: #4164D0;
+    color: #fff;
+}
+
 .booked{
     display: none;
 }
