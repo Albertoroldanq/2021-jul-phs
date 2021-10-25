@@ -22,6 +22,7 @@ const BookingCalendar = (props) => {
     const [bookedSuccessLink, setBookedSuccessLink] = useState('')
     const [bookButtonState, setBookButtonState] = useState('disabled')
     const [timeSlotSelected, setTimeSlotSelected] = useState(null)
+    const [dataValidationErrorMessage, setDataValidationErrorMessage] = useState('hideDataValidationErrorMessage')
 
     const day = value.getDate().toString()
     const month = (value.getMonth() + 1).toString()
@@ -49,6 +50,25 @@ const BookingCalendar = (props) => {
         16: "unselected"
     }
 
+    const validateEmail = (mail) => {
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(mail !== null) {
+            if (mail.match(mailformat)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    const handleEmail = (value) => {
+        if (!validateEmail(patientEmail)) {
+            setDataValidationErrorMessage('showDataValidationErrorMessage')
+        } else {
+            setDataValidationErrorMessage('hideDataValidationErrorMessage')
+        }
+    }
+
     bookedAppointments.forEach(appointment => {
         timeSlots[appointment] = "booked"
     })
@@ -61,18 +81,23 @@ const BookingCalendar = (props) => {
             })
         )
 
-        if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null) && (appointmentDescription !== null || '')) {
+        if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null || '') && (validateEmail(patientEmail)) && (appointmentDescription !== null || '')) {
             setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&day=${day}&month=${month}&year=${year}&doctorLastName=${props.currentDoctor.lastName}&time=${appointmentTime}&name=${patientName}`)
             setBookButtonState('enabled')
         } else if ((appointmentTime === null || '') || (patientName === null || '') || (patientEmail === null) || (appointmentDescription === null || '')) {
-            setBookedSuccessLink('/')
-            setBookButtonState('disabled')
+               setBookedSuccessLink('/')
+               setBookButtonState('disabled')
         }
+        if (!validateEmail(patientEmail)) {
+            setDataValidationErrorMessage('showDataValidationErrorMessage')
+        } else {
+            setDataValidationErrorMessage('hideDataValidationErrorMessage')
+        }
+
     }, [props.currentDoctor, value, patientName, appointmentDescription, patientEmail, appointmentTime])
 
 
     const handleSubmit = async () => {
-
         if ((appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null) && (appointmentDescription !== null || '')) {
 
             const rawResponse = await fetch('http://localhost:5000/appointmentBooked/', {
@@ -90,6 +115,7 @@ const BookingCalendar = (props) => {
                     "description": appointmentDescription
                 })
             })
+
         }
     }
 
@@ -100,41 +126,41 @@ const BookingCalendar = (props) => {
                 <div className={"calendarAndTimeSlots"}>
                     <Calendar className="calendar" onChange={onChange} value={value} minDate={minDate} minDetail="month"
                               next2Label={null} prev2Label={null} maxDate={maxDate}/>
-                <div className="buttonContainer">
-                    <button className={timeSlots[9]} onClick={() => {
-                        setAppointmentTime(9)
-                    }}>9 - 10 AM
-                    </button>
-                    <button className={timeSlots[10]} onClick={() => {
-                        setAppointmentTime(10)
-                        setTimeSlotSelected(10)
-                    }}>10 - 11 AM
-                    </button>
-                    <button className={timeSlots[11]} onClick={() => {
-                        setAppointmentTime(11)
-                    }}>11 - 12 PM
-                    </button>
-                    <button className={timeSlots[12]} onClick={() => {
-                        setAppointmentTime(12)
-                    }}>12 - 13 PM
-                    </button>
-                    <button className={timeSlots[13]} onClick={() => {
-                        setAppointmentTime(13)
-                    }}>1 - 2 PM
-                    </button>
-                    <button className={timeSlots[14]} onClick={() => {
-                        setAppointmentTime(14)
-                    }}>2 - 3 PM
-                    </button>
-                    <button className={timeSlots[15]} onClick={() => {
-                        setAppointmentTime(15)
-                    }}>3 - 4 PM
-                    </button>
-                    <button className={timeSlots[16]} onClick={() => {
-                        setAppointmentTime(16)
-                    }}>4 - 5 PM
-                    </button>
-                </div>
+                    <div className="buttonContainer">
+                        <button className={timeSlots[9]} onClick={() => {
+                            setAppointmentTime(9)
+                        }}>9 - 10 AM
+                        </button>
+                        <button className={timeSlots[10]} onClick={() => {
+                            setAppointmentTime(10)
+                            setTimeSlotSelected(10)
+                        }}>10 - 11 AM
+                        </button>
+                        <button className={timeSlots[11]} onClick={() => {
+                            setAppointmentTime(11)
+                        }}>11 - 12 PM
+                        </button>
+                        <button className={timeSlots[12]} onClick={() => {
+                            setAppointmentTime(12)
+                        }}>12 - 13 PM
+                        </button>
+                        <button className={timeSlots[13]} onClick={() => {
+                            setAppointmentTime(13)
+                        }}>1 - 2 PM
+                        </button>
+                        <button className={timeSlots[14]} onClick={() => {
+                            setAppointmentTime(14)
+                        }}>2 - 3 PM
+                        </button>
+                        <button className={timeSlots[15]} onClick={() => {
+                            setAppointmentTime(15)
+                        }}>3 - 4 PM
+                        </button>
+                        <button className={timeSlots[16]} onClick={() => {
+                            setAppointmentTime(16)
+                        }}>4 - 5 PM
+                        </button>
+                    </div>
                 </div>
                 <div className={"patientDetailsForm"}>
                     <h2>3. Introduce your details</h2>
@@ -147,11 +173,16 @@ const BookingCalendar = (props) => {
                                onChange={e => setPatientName(e.target.value)} className="textInput"/>
                         <label>Email</label>
                         <input type="email" required placeholder="Enter your email" name="email"
-                               onChange={e => setPatientEmail(e.target.value)} className="textInput"/>
+                               onChange={e => {
+                                   setPatientEmail(e.target.value)
+                                   handleEmail(e.target.value)}} className="textInput"/>
                         <label>Describe symptoms</label>
                         <textarea className="textareaInput" type="textarea" rows="5" cols="1" placeholder="Tell us more"
                                   name="description" onChange={e => setAppointmentDescription(e.target.value)}
                                   required/>
+                        <div className="dataValidationErrorMessage">
+                            <p className={dataValidationErrorMessage}>Please, enter a valid email address.</p>
+                        </div>
                         <div>
                             <Link to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}
                                   className={bookButtonState + " bookButton"}>Book an appointment</Link>
@@ -162,6 +193,9 @@ const BookingCalendar = (props) => {
             :
             <div id="availabilityContainer" className={displaytimeSlotsAndDates}>
                 <Calendar onChange={onChange} value={value} minDate={minDate} className="calendar"/>
+                <div className={"calendarErrorMessage"}>
+                    <p>The surgery is closed on the weekends. Please, select a day from Monday to Friday.</p>
+                </div>
             </div>
     )
 }

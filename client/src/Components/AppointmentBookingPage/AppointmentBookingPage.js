@@ -26,7 +26,6 @@ const AppointmentBookingPage = () => {
                 <h2>1. Choose a doctor</h2>
                     <DoctorDropdownMenu allDoctors={allDoctors} setCurrentDoctor={setCurrentDoctor}
                                         currentDoctor={currentDoctor}/>
-                <div></div>
                     <BookingCalendar currentDoctor={currentDoctor}/>
             </div>
         </div>

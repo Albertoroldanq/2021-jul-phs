@@ -140,7 +140,7 @@ h2 {
 }
 
 .bookingForm textarea {
-    margin: 5px 0 80px 0;
+    margin: 5px 0 0px 0;
 }
 
 .bookingForm label {
@@ -154,4 +154,18 @@ h2 {
     border-top: 1px solid rgba(120, 127, 144, 0.5);
     margin-top: 50px;
     padding-top: 10px;
+}
+
+.hideDataValidationErrorMessage {
+    display: none;
+}
+
+.dataValidationErrorMessage {
+    height: 80px;
+    padding: 20px 0;
+}
+
+.showDataValidationErrorMessage{
+    margin: auto;
+    color: #d10000;
 }
