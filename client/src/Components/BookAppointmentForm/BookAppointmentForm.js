@@ -52,7 +52,7 @@ const BookAppointmentForm = (props) => {
 
     useEffect(() => {
         if ((props.appointmentTime !== null || '') && (patientName !== null || '') && (patientEmail !== null || '') && (validateEmail(patientEmail)) && (appointmentDescription !== null || '')) {
-            setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&day=${props.day}&month=${props.month}&year=${props.year}&doctorLastName=${props.currentDoctor.lastName}&time=${props.appointmentTime}&name=${patientName}`)
+            setBookedSuccessLink(`/appointmentBooked?description=${appointmentDescription}&day=${props.day}&month=${props.month}&year=${props.year}&doctorLastName=${props.currentDoctor.lastName}&time=${props.appointmentTime}&name=${patientName}&email=${patientEmail}`)
             setBookButtonState('enabled')
         } else if ((props.appointmentTime === null || '') || (patientName === null || '') || (patientEmail === null) || (appointmentDescription === null || '')) {
             setBookedSuccessLink('/')

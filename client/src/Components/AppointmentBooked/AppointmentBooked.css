@@ -46,8 +46,8 @@ body {
 
 .appointmentBookedDoctorDetails, .appointmentBookedDateDetails,
 .appointmentBookedTimeDetails, .appointmentBookedPatientName,
-.appointmentBookedPatientSymptoms {
-    margin: 10px 0 10px 0;
+.appointmentBookedPatientEmail, .appointmentBookedPatientSymptoms {
+    margin: 15px 0 15px 0;
 }
 
 .goBackButton {

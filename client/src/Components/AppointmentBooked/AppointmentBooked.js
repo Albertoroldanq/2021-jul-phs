@@ -5,8 +5,7 @@ import './AppointmentBooked.css'
 const AppointmentBooked = () => {
     const search = useLocation().search;
     const fullName = new URLSearchParams(search).get('name')
-    const name = fullName.split(' ')
-    const firstName = name[0]
+    const email = new URLSearchParams(search).get('email')
     const description = new URLSearchParams(search).get('description')
     const day = new URLSearchParams(search).get('day')
     const month = new URLSearchParams(search).get('month')
@@ -37,7 +36,11 @@ const AppointmentBooked = () => {
                             </div>
                             <div className={"appointmentBookedPatientName"}>
                                 <h3 className={"appointmentBookedTitleDetail"}>Full Name</h3>
-                                <p className={"appointmentBookedInfo"}>{name}</p>
+                                <p className={"appointmentBookedInfo"}>{fullName}</p>
+                            </div>
+                            <div className={"appointmentBookedPatientEmail"}>
+                                <h3 className={"appointmentBookedTitleDetail"}>Email address</h3>
+                                <p className={"appointmentBookedInfo"}>{email}</p>
                             </div>
                         </div>
                         <div className={"appointmentBookedPatientSymptoms"}>
