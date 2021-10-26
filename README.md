@@ -11,7 +11,6 @@
 ---
 
 ## Client
-[localhost:3000](http://localhost:3000)
 
 ### In the terminal
 `cd client`
@@ -20,9 +19,9 @@
 
 `npm start`
 
+[localhost:3000](http://localhost:3000)
 ---
 ## Server
-[localhost:5000](http://localhost:5000)
 
 ### In the terminal
 
@@ -31,3 +30,5 @@
 `npm install`
 
 `npm start`
+
+[localhost:5000](http://localhost:5000)
