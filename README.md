@@ -7,8 +7,7 @@
 ---
 ## Database - MongoDB
 - Open your MongoDB program (probably MongoDB Compass)
-- Create a DB called phs with a collection named doctors
--Import to this collecion:
+- Create a DB called "phs" with a collection named "doctors" - import to this collecion the folowing file:
 `/server/db/doctors.json`
 ---
 
