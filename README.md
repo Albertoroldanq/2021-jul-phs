@@ -12,7 +12,7 @@
 `/server/db/doctors.json`
 ---
 
-## Client
+## Client - React
 
 ### In the terminal
 `cd client`
@@ -24,7 +24,7 @@
 Go to [localhost:3000](http://localhost:3000)
 
 ---
-## Server
+## Server - Node.js
 
 ### In the terminal
 
