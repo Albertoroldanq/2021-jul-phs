@@ -4,10 +4,64 @@ body {
     background-color: #ffffff;
 }
 
+.appointmentBookedContainer {
+    width: 70%;
+    padding-bottom: 100px;
+}
+
+.appointmentBookedContainer h1 {
+    margin-bottom: 10px;
+}
+
+.appointmentBookedDetailsContainer {
+    margin:30px 0 100px 0;
+}
+
+.appointmentBookedSubtitle {
+    color: #787F90;
+    font-size: 18px;
+    margin: 0;
+}
+
+.appointmentBookedTitleDetail {
+    font-size: 16px;
+    color: #787F90;
+    font-weight: 400;
+    margin: 0;
+}
+
+.appointmentBookedInfo {
+    margin: 0;
+}
+
+.appointmentBookedDayTimeNameEmailWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.appointmentBookedDateDetails,
+.appointmentBookedTimeDetails, .appointmentBookedPatientName {
+    width: 45%;
+}
+
+.appointmentBookedDoctorDetails, .appointmentBookedDateDetails,
+.appointmentBookedTimeDetails, .appointmentBookedPatientName,
+.appointmentBookedPatientSymptoms {
+    margin: 10px 0 10px 0;
+}
+
 .goBackButton {
-    background-color: #cdcdcd;
+    background-color: #ffffff;
     color: #4164D0;
-    border-radius: 5px;
+    border: 1px solid #4164D0;
+    border-radius: 10px;
     text-decoration: none;
-    width: 100px;
+    padding: 20px 40px;
+    font-size: 18px;
+}
+
+.goBackButton:hover {
+    background-color: #4164D0;
+    color: #ffffff;
+
 }

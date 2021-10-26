@@ -15,23 +15,40 @@ const AppointmentBooked = () => {
     const time = new URLSearchParams(search).get('time')
 
     return (
-        <div>
-            <h2>Appointment booked!</h2>
-            <p>You will receive a confirmation email shortly.</p>
+        <div className={"mainContainer"}>
+            <div className={"childContainer"}>
+                <div className={"appointmentBookedContainer"}>
+                    <h1>Appointment booked!</h1>
+                    <p className={"appointmentBookedSubtitle"}>You will receive a confirmation email shortly.</p>
+                    <div className={"appointmentBookedDetailsContainer"}>
+                        <h2>Details</h2>
+                        <div className={"appointmentBookedDoctorDetails"}>
+                            <h3 className={"appointmentBookedTitleDetail"}>Doctor</h3>
+                            <p className={"appointmentBookedInfo"}>Dr. {doctorLastName}</p>
+                        </div>
+                        <div className={"appointmentBookedDayTimeNameEmailWrapper"}>
+                            <div className={"appointmentBookedDateDetails"}>
+                                <h3 className={"appointmentBookedTitleDetail"}>Day</h3>
+                                <p className={"appointmentBookedInfo"}>{day}/{month}/{year}</p>
+                            </div>
+                            <div className={"appointmentBookedTimeDetails"}>
+                                <h3 className={"appointmentBookedTitleDetail"}>Time</h3>
+                                <p className={"appointmentBookedInfo"}>{time}h</p>
+                            </div>
+                            <div className={"appointmentBookedPatientName"}>
+                                <h3 className={"appointmentBookedTitleDetail"}>Full Name</h3>
+                                <p className={"appointmentBookedInfo"}>{name}</p>
+                            </div>
+                        </div>
+                        <div className={"appointmentBookedPatientSymptoms"}>
+                            <h3 className={"appointmentBookedTitleDetail"}>Described symptoms</h3>
+                            <p className={"appointmentBookedInfo"}>{description}</p>
+                        </div>
+                    </div>
 
-            <h4>Details</h4>
-            <h5>Doctor</h5>
-            <p>Dr. {doctorLastName}</p>
-            <h5>Day</h5>
-            <p>{day}/{month}/{year}</p>
-            <h5>Time</h5>
-            <p>{time}h</p>
-            <h5>Full Name</h5>
-            <p>{name}</p>
-            <h5>Described symptoms</h5>
-            <p>{description}</p>
-
-            <button className="goBackButton"><Link to='/'>Go back</Link></button>
+                    <Link className="goBackButton" to='/'>Go back to the HomePage</Link>
+                </div>
+            </div>
         </div>
     );
 }

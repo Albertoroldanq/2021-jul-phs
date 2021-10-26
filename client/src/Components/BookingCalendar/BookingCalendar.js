@@ -60,7 +60,9 @@ const BookingCalendar = (props) => {
             :
             <div id="availabilityContainer" className="availabilityContainer">
                 <h2>2. Choose day and time</h2>
-                <Calendar onChange={onChange} value={value} minDate={minDate} className="calendar"/>
+                <Calendar className="calendar" onChange={onChange} value={value} minDate={minDate}
+                          minDetail="month"
+                          next2Label={null} prev2Label={null} maxDate={maxDate} />
                 <div className={"calendarErrorMessage"}>
                     <p>The surgery is closed on the weekends. Please, select a day from Monday to Friday.</p>
                 </div>

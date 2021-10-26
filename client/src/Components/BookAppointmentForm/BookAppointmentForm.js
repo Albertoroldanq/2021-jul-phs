@@ -74,16 +74,16 @@ const BookAppointmentForm = (props) => {
                 <input type="hidden" value={props.date} name="date"/>
                 <input type="hidden" value={props.appointmentTime} name="time"/>
                 <label>Full name</label>
-                <input type="text" required placeholder="Enter your name" name="name"
+                <input type="text" required placeholder="Name and Lastname(s)" name="name"
                        onChange={e => setPatientName(e.target.value)} className="textInput"/>
                 <label>Email</label>
-                <input type="email" required placeholder="Enter your email" name="email"
+                <input type="email" required placeholder="patient@email.com" name="email"
                        onChange={e => {
                            setPatientEmail(e.target.value)
                            handleEmail(e.target.value)
                        }} className="textInput"/>
-                <label>Describe symptoms</label>
-                <textarea className="textareaInput" type="textarea" rows="5" cols="1" placeholder="Tell us more"
+                <label>Describe your symptoms</label>
+                <textarea className="textareaInput" type="textarea" rows="5" cols="1" placeholder="Provide details of your symptoms"
                           name="description" onChange={e => setAppointmentDescription(e.target.value)}
                           required/>
                 <div className="dataValidationErrorMessage">

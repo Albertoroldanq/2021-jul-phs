@@ -10,16 +10,17 @@ body {
 }
 
 .mainContainer {
-    width: 80vw;
     height: auto;
     margin: 0 auto;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 100px 15% 150px 15%;
+    background: #F4F4F8;
 }
 
 .childContainer {
-    width: 50%;
+    width: 100%;
+    padding: 80px 200px;
     margin: 0 auto;
+    background: #FFFFFF;
 }
 
 h1 {
