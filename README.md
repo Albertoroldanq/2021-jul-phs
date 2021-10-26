@@ -1,6 +1,7 @@
 # 2021-Fighting-Mongooses-Patient-Health-Service
 
 `git clone git@github.com:iO-Academy/2021-jul-phs.git`
+
 ---
 ## MongoDB
 - Open your MongoDB program (probably MongoDB Compass)
@@ -10,6 +11,8 @@
 ---
 
 ## Client
+[localhost:3000](http://localhost:3000)
+
 ### In the terminal
 `cd client`
 
@@ -19,8 +22,12 @@
 
 ---
 ## Server
+[localhost:5000](http://localhost:5000)
+
 ### In the terminal
 
 `cd server`
+
 `npm install`
+
 `npm start`
