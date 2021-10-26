@@ -1,6 +1,6 @@
 # 2021-Fighting-Mongooses-Patient-Health-Service
 
-## React, Nodejs and MongoDB
+## React, Nodejs and MongoDB app
 
 `git clone git@github.com:iO-Academy/2021-jul-phs.git`
 
