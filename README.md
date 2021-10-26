@@ -19,7 +19,8 @@
 
 `npm start`
 
-[localhost:3000](http://localhost:3000)
+Go to [localhost:3000](http://localhost:3000)
+
 ---
 ## Server
 
@@ -31,4 +32,4 @@
 
 `npm start`
 
-[localhost:5000](http://localhost:5000)
+Go to [localhost:5000/doctors](http://localhost:5000/doctors)
