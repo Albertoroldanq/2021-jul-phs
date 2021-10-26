@@ -16,6 +16,7 @@
 `npm install`
 
 `npm start`
+
 ---
 ## Server
 ### In the terminal
