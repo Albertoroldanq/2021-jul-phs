@@ -3,31 +3,33 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './BookingCalendar.css'
 
+import '../TimeSlots/TimeSlots'
+import '../BookAppointmentForm/BookAppointmentForm'
+import TimeSlots from "../TimeSlots/TimeSlots";
+import BookAppointmentForm from "../BookAppointmentForm/BookAppointmentForm";
+
 const BookingCalendar = (props) => {
+    const today = new Date()
+    const tomorrow = new Date(today)
+    const maxDate = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    maxDate.setDate(maxDate.getDate() + 90)
 
-    const [value, onChange] = useState(new Date())
-
-    const day = value.getDate().toString()
-    const month = (value.getMonth() + 1).toString()
-    const year = value.getFullYear().toString()
-    const date = day + month + year
-
+    const [value, onChange] = useState(tomorrow)
+    const [minDate, setMinDate] = useState(tomorrow)
     const [bookedAppointments, setBookedAppointments] = useState([])
-    const timeSlots = {
-        9: "available",
-        10: "available",
-        11: "available",
-        12: "available",
-        13: "available",
-        14: "available",
-        15: "available",
-        16: "available"
+    const [appointmentTime, setAppointmentTime] = useState(null)
+    const [day, setDay] = useState(value.getDate().toString())
+    const [month, setMonth] = useState((value.getMonth() + 1).toString())
+    const [year, setYear] = useState(value.getFullYear().toString())
+    const [date, setDate] = useState(day + month + year)
+
+    const handleDatePicker = () => {
+        setDay(value.getDate().toString())
+        setMonth((value.getMonth() + 1).toString())
+        setYear(value.getFullYear().toString())
+        setDate(day + month + year)
     }
-    bookedAppointments.forEach(appointment => {
-        timeSlots[appointment] = "booked"
-
-    })
-
 
     useEffect(() => {
         fetch('http://localhost:5000/doctors/' + props.currentDoctor._id + '/' + date).then(
@@ -35,32 +37,36 @@ const BookingCalendar = (props) => {
                 setBookedAppointments(response)
             })
         )
-    }, [value])
-
-
+        handleDatePicker()
+    }, [value, props.currentDoctor, date, day])
 
     return (
-        <div>
-            <Calendar
-                onChange={onChange}
-                value={value}
-            />
+        value.getDay() !== 6 && value.getDay() !== 0 ?
+            <div id="availabilityContainer" className={"availabilityContainer"}>
+                <h2>2. Choose day and time</h2>
+                <div className={"calendarAndTimeSlots"}>
+                    <Calendar className="calendar" onChange={onChange} value={value} minDate={minDate}
+                              minDetail="month"
+                              next2Label={null} prev2Label={null} maxDate={maxDate}/>
+                    <TimeSlots appointmentTime={appointmentTime} setAppointmentTime={setAppointmentTime}
+                               bookedAppointments={bookedAppointments} day={day} />
+                </div>
 
-            {value.getDay() !== 6 && value.getDay() !== 0?
-                <div>
-                    <button className={timeSlots[9]}>9-10</button>
-                    <button className={timeSlots[10]}>10-11</button>
-                    <button className={timeSlots[11]}>11-12</button>
-                    <button className={timeSlots[12]}>12-13</button>
-                    <button className={timeSlots[13]}>13-14</button>
-                    <button className={timeSlots[14]}>14-15</button>
-                    <button className={timeSlots[15]}>15-16</button>
-                    <button className={timeSlots[16]}>16-17</button>
-                </div> : <div></div>}
-        </div>
-);
-
-
-
+                <BookAppointmentForm appontmentTime={appointmentTime} currentDoctor={props.currentDoctor}
+                                     date={date} setBookedAppointments={setBookedAppointments}
+                                     appointmentTime={appointmentTime}
+                                     day={day} month={month} year={year} date={date} value={value}/>
+            </div>
+            :
+            <div id="availabilityContainer" className="availabilityContainer">
+                <h2>2. Choose day and time</h2>
+                <Calendar className="calendar" onChange={onChange} value={value} minDate={minDate}
+                          minDetail="month"
+                          next2Label={null} prev2Label={null} maxDate={maxDate} />
+                <div className={"calendarErrorMessage"}>
+                    <p>The surgery is closed on the weekends. Please, select a day from Monday to Friday.</p>
+                </div>
+            </div>
+    )
 }
 export default BookingCalendar

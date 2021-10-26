@@ -1,3 +1,73 @@
-.booked {
-    display: none;
+.availabilityContainer {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+}
+
+.calendarAndTimeSlots {
+    display: flex;
+}
+
+.calendar {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    height: 420px;
+    width: 400px;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 20px;
+    text-align: center;
+}
+
+.react-calendar button {
+    font-size: 18px;
+}
+
+.react-calendar__month-view__weekdays {
+    font-weight: normal;
+}
+
+.react-calendar__navigation .react-calendar__navigation__label:disabled {
+    background: none;
+    color: #000;
+}
+
+.react-calendar__tile:disabled {
+    background: none;
+}
+
+.react-calendar__tile:disabled:hover {
+    color: rgba(16, 16, 16, 0.3);
+}
+
+.react-calendar__month-view__days__day--weekend:hover {
+    background: none;
+    color: #d10000;
+}
+
+.react-calendar__tile--active, .react-calendar__tile {
+    border-radius: 50%;
+}
+
+.bookingForm input, .bookingForm label, .bookingForm textarea{
+    display: block;
+    font-size: 16px;
+    width: 100%;
+}
+
+.bookingForm input, .bookingForm textarea {
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+
+.patientDetailsForm, .availabilityContainer {
+    border-top: 1px solid rgba(120, 127, 144, 0.5);
+    margin-top: 50px;
+    padding-top: 10px;
 }

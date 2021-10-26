@@ -12,7 +12,6 @@ const mongoSettings = {
     useUnifiedTopology: true
 }
 
-
 function router(app) {
     app.get('/doctors', cors(corsOptions), (request, response) => {
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
@@ -24,28 +23,7 @@ function router(app) {
         })
     })
 
-    app.get('/patients', (request, response) => {
-        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
-            const db = client.db('phs')
-            const patientsCollection = db.collection('patients')
-            const patients = await patientsCollection.find().toArray()
-
-            response.json(patients)
-        })
-    })
-
-    app.get('/appointments', (request, response) => {
-        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
-            const db = client.db('phs')
-            const appointmentsCollection = db.collection('appointments')
-            const appointments = await appointmentsCollection.find().toArray()
-
-            response.json(appointments)
-        })
-    })
-
-
-    app.get('/doctors/:id/:date', (request, response) => {
+    app.get('/doctors/:id/:date', cors(corsOptions), (request, response) => {
             let id = ObjectId(request.params.id)
             let day = request.params.date
             MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
@@ -56,15 +34,37 @@ function router(app) {
                     if (doctor[0].appointments[day]) {
                         doctor[0].appointments[day].forEach(time => {
                             doctorBookedTimes.push(time.time)
-
                         })
                     }
                     response.json(doctorBookedTimes)
-
                 }
             )
         }
     )
+
+    app.post('/appointmentBooked/', (request, response) => {
+        let doctorId = request.body.doctorId
+        let date = request.body.date.toString()
+        let data =
+            {
+                time: request.body.time,
+                name: request.body.name,
+                email: request.body.email,
+                description: request.body.description
+            }
+
+        let dataToDisplay = data
+        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
+            const db = client.db('phs')
+            const doctorsCollection = db.collection('doctors')
+
+            const doctors = await doctorsCollection.updateOne({_id: ObjectId(doctorId)}, {$push: {[`appointments.${date}`]: data}})
+
+            response.json(dataToDisplay)
+        })
+    })
+
+
 }
 
 module.exports = router

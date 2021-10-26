@@ -1,12 +1,13 @@
-import './App.css';
+// import './App.css';
 import React from "react";
+import Routing from "./Components/Router/Router";
 import AppointmentBookingPage from "./Components/AppointmentBookingPage/AppointmentBookingPage";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-          <AppointmentBookingPage />
+          <Routing />
       </header>
     </div>
   );

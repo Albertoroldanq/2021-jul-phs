@@ -1,4 +1,5 @@
 import React from "react";
+import './DoctorDropdownMenu.css'
 
 const DoctorDropdownMenu = (props) => {
 
@@ -8,11 +9,10 @@ const DoctorDropdownMenu = (props) => {
 
     return (
         <div>
-            <select onChange={e => handleChange(e.target.value)} name={"doctors"} id={"doctors"}>
+            <select onChange={e => handleChange(e.target.value)} name={"doctors"} id={"doctorsDropdown"} className={"doctorsDropdown"}>
                 {props.allDoctors.map((doctor, index) => {
                     return (
-                        <option value={index}
-                                data-doctorId={doctor._id}>Dr. {doctor.firstName + ' ' + doctor.lastName}</option>
+                        <option value={index}>Dr. {doctor.firstName + ' ' + doctor.lastName}</option>
                     )
                 })}
             </select>
