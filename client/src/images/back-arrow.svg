@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="57px" height="57px" viewBox="0 0 57 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Patients" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Book" transform="translate(-167.000000, -126.000000)">
+            <g id="Group" transform="translate(167.000000, 126.000000)">
+                <circle id="Oval-Copy" fill="#F4F4F8" cx="28.5" cy="28.5" r="28.5"></circle>
+                <g transform="translate(11.000000, 12.000000)" fill="#4164D0" fill-rule="nonzero" id="Outline-/-Interface-/-Arrow-left">
+                    <g id="Arrow-left" transform="translate(7.500000, 10.500000)">
+                        <path d="M9.04545,2.295495 C9.4848,1.85616 9.4848,1.14384 9.04545,0.704505 C8.6061,0.26517 7.8939,0.26517 7.454505,0.704505 L1.454505,6.70455 C1.23483,6.92415 1.125,7.21215 1.125,7.5 C1.125,7.65255 1.15536,7.79805 1.210365,7.93065 C1.265265,8.06325 1.34664,8.1876 1.454505,8.29545 L7.454505,14.29545 C7.8939,14.7348 8.6061,14.7348 9.04545,14.29545 C9.4848,13.8561 9.4848,13.1439 9.04545,12.70455 L4.96599,8.625 L19.5,8.625 C20.1213,8.625 20.625,8.1213 20.625,7.5 C20.625,6.8787 20.1213,6.37500375 19.5,6.37500375 L4.96599,6.37500375 L9.04545,2.295495 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
