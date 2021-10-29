@@ -1,4 +1,3 @@
-import React, {useState, useEffect} from "react";
 import {useLocation, Link} from "react-router-dom";
 import './AppointmentBooked.css'
 
@@ -48,7 +47,6 @@ const AppointmentBooked = () => {
                             <p className={"appointmentBookedInfo"}>{description}</p>
                         </div>
                     </div>
-
                     <Link className="goBackButton" to='/'>Go back to the HomePage</Link>
                 </div>
             </div>

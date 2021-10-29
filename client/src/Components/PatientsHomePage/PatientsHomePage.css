@@ -1,0 +1,53 @@
+.bookAppointmentWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    background: #FFFFFF;
+}
+
+.bookAppointmentImage, .bookAppointmentLinksWrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookAppointmentImage {
+    width: 40%;
+}
+.bookAppointmentLinksWrapper {
+    width: 60%;
+}
+
+.bookAppointmentImage img {
+    width: 100%;
+}
+
+/*  To move to the index page  */
+
+.ctaButton {
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #4164D0;
+    padding: 20px 50px;
+    text-decoration: none;
+    font-size: 20px;
+    width: fit-content;
+}
+
+.ctaButton.disabled {
+    background: #6d6d71;
+    opacity: 0.5;
+}
+.ctaButton.disabled:hover {
+    background: #6d6d71;
+    cursor: default;
+}
+
+.ctaButton:hover {
+    color: #ffffff;
+    background-color: #294086;
+}
+

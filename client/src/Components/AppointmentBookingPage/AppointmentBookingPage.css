@@ -1,35 +1,10 @@
-* {
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-}
-
-.mainContainer {
-    height: auto;
-    margin: 0 auto;
-    padding: 100px 15% 150px 15%;
-    background: #F4F4F8;
-}
-
-.childContainer {
+.appointmentBookingPageWrapper {
     width: 100%;
-    padding: 80px 200px;
+    padding: 0 200px 80px 200px;
     margin: 0 auto;
     background: #FFFFFF;
 }
 
-h1 {
-    color: #4164D0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-}
-
-h2 {
-    font-size: 18px;
-    font-weight: 400;
+.backArrowIcon {
+    margin: 35px 0 0 40px;
 }

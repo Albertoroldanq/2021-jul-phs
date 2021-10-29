@@ -91,7 +91,7 @@ const BookAppointmentForm = (props) => {
                 </div>
                 <div>
                     <Link to={bookedSuccessLink} value="Book an appointment!" onClick={handleSubmit}
-                          className={bookButtonState + " bookButton"}>Book an appointment</Link>
+                          className={bookButtonState + " ctaButton"}>Book an appointment</Link>
                 </div>
             </div>
         </div>
