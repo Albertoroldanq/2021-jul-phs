@@ -1,8 +1,6 @@
 const express = require('express')
 const router = require('./router/')
 const bodyParser= require('body-parser')
-const MongoClient = require('mongodb').MongoClient
-const ObjectId = require('mongodb').ObjectId
 const cors = require('cors')
 
 const app = express()
