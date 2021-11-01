@@ -13,13 +13,11 @@ export const createAppointment = async (request, response) => {
             email: request.body.email,
             description: request.body.description
         }
-    let dataToDisplay = data
 
     try {
         const doctors = await Doctor.updateOne({_id: doctorId}, {$push: {[`appointments.${date}`]: data}})
-        response.status(200).json(dataToDisplay)
+        response.status(200)
     } catch (error) {
         response.status(404).json({message: error.message})
-
     }
 }
