@@ -1,10 +1,13 @@
-const express = require('express')
-const router = require('./router/')
-const bodyParser= require('body-parser')
-const cors = require('cors')
+import express from 'express'
+import bodyParser from 'body-parser'
+import mongoose from 'mongoose'
+import cors from 'cors'
+
+import doctorRoutes from './routes/doctors.js'
 
 const app = express()
-const port = 5000
+
+app.use('/', doctorRoutes)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -12,7 +15,14 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(cors())
 
+const mongoUrl = 'mongodb://root:password@127.0.0.1:27017/phs?authSource=admin'
+const mongoSettings = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+const port = 5000
 
-router(app)
+mongoose.connect(mongoUrl, mongoSettings)
+    .then(() => app.listen(port, () => console.log(`Server running on port: ${port}`)))
+    .catch((error)=> console.log(error.message) )
 
-app.listen(port)
