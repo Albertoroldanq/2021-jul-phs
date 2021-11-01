@@ -1,6 +1,3 @@
-import express from 'express';
-import mongoose from 'mongoose';
-
 import Doctor from '../models/doctor.js';
 
 export const getDoctors = async (request, response) => {
@@ -12,7 +9,7 @@ export const getDoctors = async (request, response) => {
     }
 }
 
-export const getDoctorBookedTimes = async (request, response) => {
+export const getDoctorBookedTimesPerDay = async (request, response) => {
     let id = request.params.id
     let day = request.params.date
     try {
