@@ -12,7 +12,7 @@ const BookAppointmentForm = (props) => {
     const [dataValidationErrorMessage, setDataValidationErrorMessage] = useState('hideDataValidationErrorMessage')
 
     const validateEmail = (mail) => {
-        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const mailformat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         if (mail !== null) {
             if (mail.match(mailformat)) {
                 return true;
@@ -32,7 +32,7 @@ const BookAppointmentForm = (props) => {
 
     const handleSubmit = async () => {
         if ((props.appointmentTime !== null || '') && (props.patientName !== null || '') && (props.patientEmail !== null) && (props.appointmentDescription !== null || '')) {
-            const rawResponse = await fetch('http://localhost:5000/appointmentBooked/', {
+            await fetch('http://localhost:5000/appointmentBooked/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

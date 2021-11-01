@@ -57,7 +57,7 @@ const BookingCalendar = (props) => {
                 <BookAppointmentForm appontmentTime={appointmentTime} currentDoctor={props.currentDoctor}
                                      date={date} setBookedAppointments={setBookedAppointments}
                                      appointmentTime={appointmentTime}
-                                     day={day} month={month} year={year} date={date} value={value}/>
+                                     day={day} month={month} year={year} value={value}/>
             </div>
             :
             <div id="availabilityContainer" className="availabilityContainer">
