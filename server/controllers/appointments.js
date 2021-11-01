@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import DoctorData from '../models/doctor.js';
+import Doctor from '../models/doctor.js';
 
 export const createAppointment = async (request, response) => {
     let doctorId = request.body.doctorId
@@ -16,7 +16,7 @@ export const createAppointment = async (request, response) => {
     let dataToDisplay = data
 
     try {
-        const doctors = await DoctorData.updateOne({_id: doctorId}, {$push: {[`appointments.${date}`]: data}})
+        const doctors = await Doctor.updateOne({_id: doctorId}, {$push: {[`appointments.${date}`]: data}})
         response.status(200).json(dataToDisplay)
     } catch (error) {
         response.status(404).json({message: error.message})

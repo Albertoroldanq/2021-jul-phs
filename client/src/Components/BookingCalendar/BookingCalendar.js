@@ -32,14 +32,15 @@ const BookingCalendar = (props) => {
     }
 
     const appointmentsByDay = async () => {
-        const response = await fetch('http://localhost:5000/doctors/' + props.currentDoctor._id + '/' + date)
-        const appointmentsByDoctorAndDateResponse = await response.json()
-        setBookedAppointments(appointmentsByDoctorAndDateResponse)
+        if(props.currentDoctorFetched) {
+            const response = await fetch('http://localhost:5000/doctors/' + props.currentDoctor._id + '/' + date)
+            const appointmentsByDoctorAndDateResponse = await response.json()
+            setBookedAppointments(appointmentsByDoctorAndDateResponse)
+        }
     }
 
     useEffect(() => {
-        appointmentsByDay()
-        handleDatePicker()
+        appointmentsByDay().then(() => handleDatePicker())
     }, [value, props.currentDoctor, date, day])
 
     return (

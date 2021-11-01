@@ -14,7 +14,7 @@ import { createAppointment } from '../controllers/appointments.js'
 
 router.get('/doctors', cors(corsOptions), getDoctors)
 router.get('/doctors/:id/:date', cors(corsOptions), getDoctorBookedTimes)
-router.post('/appointmentBooked', cors(corsOptions), createAppointment)
+router.post('/appointmentBooked/', cors(corsOptions), createAppointment)
 
 //
 // function routes(app) {

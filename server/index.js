@@ -7,13 +7,12 @@ import doctorRoutes from './routes/doctors.js'
 
 const app = express()
 
-app.use('/', doctorRoutes)
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json())
 app.use(express.static('public'))
 app.use(cors())
+app.use('/', doctorRoutes)
 
 const mongoUrl = 'mongodb://root:password@127.0.0.1:27017/phs?authSource=admin'
 const mongoSettings = {

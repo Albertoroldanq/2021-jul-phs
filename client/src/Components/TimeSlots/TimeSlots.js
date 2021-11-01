@@ -30,12 +30,14 @@ const TimeSlots = (props) => {
         props.setAppointmentTime(num)
     }
 
-    props.bookedAppointments.forEach(appointment => {
-        timeSlots[appointment] = "booked"
-        if (appointment === props.appointmentTime) {
-            props.setAppointmentTime(null)
-        }
-    })
+    if (props.bookedAppointments !== []) {
+        props.bookedAppointments.forEach(appointment => {
+            timeSlots[appointment] = "booked"
+            if (appointment === props.appointmentTime) {
+                props.setAppointmentTime(null)
+            }
+        })
+    }
 
     return (
         <div className="buttonContainer">

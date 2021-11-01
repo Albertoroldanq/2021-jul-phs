@@ -7,9 +7,10 @@ import {Link} from "react-router-dom";
 
 const AppointmentBookingPage = () => {
     const [currentDoctor, setCurrentDoctor] = useState([]);
+    const [currentDoctorFetched, setCurrentDoctorFetched] = useState(false);
 
     const [allDoctors, setAllDoctors] = useState([]);
-    const doctors = async (e) => {
+    const doctors = async () => {
         const response = await fetch('http://localhost:5000/doctors')
         let doctorsResponse = await response.json();
         setAllDoctors(doctorsResponse)
@@ -17,7 +18,7 @@ const AppointmentBookingPage = () => {
     }
 
     useEffect(() => {
-        doctors()
+        doctors().then(() => setCurrentDoctorFetched(true))
     }, [])
 
     return (
@@ -31,7 +32,7 @@ const AppointmentBookingPage = () => {
                     <h2>1. Choose a doctor</h2>
                     <DoctorDropdownMenu allDoctors={allDoctors} setCurrentDoctor={setCurrentDoctor}
                                         currentDoctor={currentDoctor}/>
-                    <BookingCalendar currentDoctor={currentDoctor}/>
+                    <BookingCalendar currentDoctor={currentDoctor} currentDoctorFetched={currentDoctorFetched}/>
                 </div>
             </div>
         </div>
