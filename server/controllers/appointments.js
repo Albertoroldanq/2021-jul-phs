@@ -1,6 +1,3 @@
-import express from 'express';
-import mongoose from 'mongoose';
-
 import Doctor from '../models/doctor.js';
 
 export const createAppointment = async (request, response) => {
