@@ -1,5 +1,5 @@
 import "./PatientsHomePage.css"
-import doctorImage from '../../images/doctor-phs.jpg';
+import doctorImage from '../../../images/doctor-phs.jpg';
 import {Link} from "react-router-dom";
 
 const PatientsHomePage = () => {

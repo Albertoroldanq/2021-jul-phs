@@ -1,7 +1,7 @@
-import "./PatientsNavbar.css"
-import logo from "../../images/Dr.appointments-logo.svg"
+import "./DoctorsNavbar.css"
+import logo from "../../../images/Dr.appointments-logo.svg"
 
-const PatientsNavbar = () => {
+const DoctorsNavbar = () => {
     return (
        <>
            <div className={'navbar'}>
@@ -11,4 +11,4 @@ const PatientsNavbar = () => {
     );
 }
 
-export default PatientsNavbar
+export default DoctorsNavbar

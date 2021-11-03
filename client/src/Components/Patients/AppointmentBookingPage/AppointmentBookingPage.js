@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import BookingCalendar from "../BookingCalendar/BookingCalendar";
 import DoctorDropdownMenu from "../DoctorDropdownMenu/DoctorDropdownMenu";
 import "./AppointmentBookingPage.css"
-import backArrowIcon from "../../images/back-arrow.svg"
+import backArrowIcon from "../../../images/back-arrow.svg"
 import {Link} from "react-router-dom";
 
 const AppointmentBookingPage = () => {

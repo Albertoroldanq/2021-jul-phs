@@ -1,7 +1,7 @@
 // import './App.css';
 import React from "react";
 import Routing from "./Components/Router/Router";
-import AppointmentBookingPage from "./Components/AppointmentBookingPage/AppointmentBookingPage";
+import AppointmentBookingPage from "./Components/Patients/AppointmentBookingPage/AppointmentBookingPage";
 
 function App() {
   return (
